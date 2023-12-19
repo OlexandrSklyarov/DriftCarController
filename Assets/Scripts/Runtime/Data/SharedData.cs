@@ -5,8 +5,8 @@ namespace SA.Game
     {
         public SceneData SceneData;
         public MainConfig MainConfig;
-        public IInputService Input;
-
-        public TimeService TimeService { get; internal set; }
+        public IInputService InputService;
+        public TimeService TimeService;
+        public AudioService AudioService;
     }
 }

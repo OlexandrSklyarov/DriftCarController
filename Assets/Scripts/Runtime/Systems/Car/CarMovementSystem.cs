@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -9,12 +10,9 @@ namespace SA.Game
         private EcsPool<PlayerInputComponent> _inputPool;
         private EcsPool<CarEngineComponent> _enginePool;
         private EcsFilter _filter;
-        private TimeService _time;
 
         public void Init(IEcsSystems systems)
         {
-            _time = systems.GetShared<SharedData>().TimeService;  
-            
             var world = systems.GetWorld();
 
             _inputPool = world.GetPool<PlayerInputComponent>();
@@ -34,11 +32,16 @@ namespace SA.Game
 
                 AddAccel(ref input, ref engine);              
                 AddSteer(ref input, ref engine);              
-                AddBrake(ref input, ref engine);    
+                AddBrake(ref input, ref engine); 
 
-                Debug.Log($"RPM [{engine.EngineRef.Wheels[0].Wheel.rpm}] speed [{engine.EngineRef.RB.velocity.magnitude}] torque [{engine.EngineRef.Wheels[0].Wheel.brakeTorque}]");          
-                Debug.Log($"Drift points [{Mathf.Abs(Vector3.Dot(engine.EngineRef.RB.velocity.normalized, engine.EngineRef.RB.transform.right))}]");          
+                CalculateSpeed(ref engine);
             }
+        }
+
+        private void CalculateSpeed(ref CarEngineComponent engine)
+        {
+            var rearWheel = engine.EngineRef.Wheels.First(x => x.IsFront).Wheel;
+            engine.Speed = rearWheel.radius * Mathf.PI * rearWheel.rpm * 60f / 1000f;
         }
 
         private void AddBrake(ref PlayerInputComponent input, ref CarEngineComponent engine)
@@ -47,7 +50,7 @@ namespace SA.Game
 
             foreach(var w in engine.EngineRef.Wheels)
             {                
-                w.Wheel.brakeTorque = (input.IsBrake) ? config.Brake : 0f;
+                w.Wheel.brakeTorque = (input.IsBrake || input.Vertical == 0) ? config.Brake : 0f;
             }
         }
 

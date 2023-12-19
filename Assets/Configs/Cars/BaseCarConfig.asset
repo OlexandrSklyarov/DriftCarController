@@ -18,3 +18,16 @@ MonoBehaviour:
   <TurnSensitivity>k__BackingField: 1
   <SteerTime>k__BackingField: 0.6
   <SpeedThreshold>k__BackingField: 65
+  <Audio>k__BackingField:
+    <EngineMoveSfx>k__BackingField:
+      Guid:
+        Data1: -150197744
+        Data2: 1302177655
+        Data3: -1909594959
+        Data4: 1783861278
+      Path: event:/Car/MoveEngine
+    <MinEnginePitch>k__BackingField: 0.2
+    <MaxEnginePitch>k__BackingField: 1
+    <MinSpeed>k__BackingField: 0.3
+    <MaxSpeed>k__BackingField: 40
+    <SpeedAudioThreshold>k__BackingField: 50

@@ -10,7 +10,7 @@ namespace SA.Game
 
         public void Init(IEcsSystems systems)
         {
-            _inputService = systems.GetShared<SharedData>().Input;
+            _inputService = systems.GetShared<SharedData>().InputService;
 
             var world = systems.GetWorld();
 

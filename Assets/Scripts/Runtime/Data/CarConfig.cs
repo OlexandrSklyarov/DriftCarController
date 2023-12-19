@@ -1,3 +1,5 @@
+using System;
+using FMODUnity;
 using UnityEngine;
 
 namespace SA.Game
@@ -11,5 +13,17 @@ namespace SA.Game
         [field: SerializeField, Min(0.1f)] public float TurnSensitivity {get; private set;} = 1f;
         [field: SerializeField, Min(0.1f)] public float SteerTime {get; private set;} = 0.6f;
         [field: SerializeField, Min(1f)] public float SpeedThreshold {get; private set;} = 100f;
+        [field: Space, SerializeField] public CarAudio Audio {get; private set;}
+    }
+
+    [Serializable]
+    public class CarAudio
+    {
+        [field: SerializeField] public EventReference EngineMoveSfx {get; private set;}
+        [field: SerializeField, Min(0.1f)] public float MinEnginePitch {get; private set;} = 0.2f;
+        [field: SerializeField, Min(0.1f)] public float MaxEnginePitch {get; private set;} = 1f;
+        [field: SerializeField, Min(0.1f)] public float MinSpeed {get; private set;} = 0.3f;
+        [field: SerializeField, Min(0.1f)] public float MaxSpeed {get; private set;} = 40;
+        [field: SerializeField, Min(0.1f)] public float SpeedAudioThreshold {get; private set;} = 50;
     }
 }

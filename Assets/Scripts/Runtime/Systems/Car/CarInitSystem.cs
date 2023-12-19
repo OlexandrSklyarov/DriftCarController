@@ -26,9 +26,13 @@ namespace SA.Game
             ref var engine = ref world.GetPool<CarEngineComponent>().Add(entity);
             engine.EngineRef = carView;
 
-            //engine
+            //target
             ref var target = ref world.GetPool<FollowTargetComponent>().Add(entity);
             target.TargetRef = carView.transform;
+
+            //audio
+            ref var audio = ref world.GetPool<CarAudioComponent>().Add(entity);
+            audio.MoveSFX = data.AudioService.Create2DAudioInstance(carView.Config.Audio.EngineMoveSfx);
         }
     }
 }

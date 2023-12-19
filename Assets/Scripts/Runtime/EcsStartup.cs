@@ -8,6 +8,7 @@ namespace SA.Game
         [SerializeField] private SceneData _sceneData;
         [SerializeField] private MainConfig _config;
 
+        private SharedData _sharedData;
         private EcsWorld _world;        
         private IEcsSystems _updateSystems;
         private IEcsSystems _fixedUpdateSystems;
@@ -15,18 +16,19 @@ namespace SA.Game
 
         private void Start () 
         {
-            var sharedData = new SharedData()
+            _sharedData = new SharedData()
             {
                 SceneData = _sceneData,
                 MainConfig = _config,
-                Input = new KeyboardInput(),
-                TimeService = new TimeService()
+                InputService = new KeyboardInput(),
+                TimeService = new TimeService(),
+                AudioService = new AudioService()
             };
 
             _world = new EcsWorld ();
-            _updateSystems = new EcsSystems (_world, sharedData);
-            _fixedUpdateSystems = new EcsSystems (_world, sharedData);
-            _lateUpdateSystems = new EcsSystems (_world, sharedData);
+            _updateSystems = new EcsSystems (_world, _sharedData);
+            _fixedUpdateSystems = new EcsSystems (_world, _sharedData);
+            _lateUpdateSystems = new EcsSystems (_world, _sharedData);
 
             _updateSystems            
 #if UNITY_EDITOR
@@ -35,6 +37,7 @@ namespace SA.Game
                 .Add(new TimeSystem())
                 .Add(new CarInitSystem())
                 .Add(new FollowCameraInitSystem())
+                .Add(new CarAudioSystem())
                 .Init ();
 
             _fixedUpdateSystems            
@@ -71,6 +74,8 @@ namespace SA.Game
 
         private void OnDestroy () 
         {
+            _sharedData.AudioService.Clear();
+
             _updateSystems?.Destroy ();
             _updateSystems = null;
 
