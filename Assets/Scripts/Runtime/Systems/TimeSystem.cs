@@ -17,6 +17,7 @@ namespace SA.Game
             _ts.Time = Time.time;
             _ts.UnscaledTime = Time.unscaledTime;
             _ts.DeltaTime = Time.deltaTime;
+            _ts.FixedDeltaTime = Time.fixedDeltaTime;
             _ts.UnscaledDeltaTime = Time.unscaledDeltaTime;
         }
     }

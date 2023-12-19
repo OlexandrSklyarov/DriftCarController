@@ -7,12 +7,9 @@ namespace SA.Game
     {
         private EcsPool<CarEngineComponent> _enginePool;
         private EcsFilter _filter;
-        private TimeService _time;
 
         public void Init(IEcsSystems systems)
-        {
-            _time = systems.GetShared<SharedData>().TimeService;  
-            
+        {            
             var world = systems.GetWorld();
 
             _enginePool = world.GetPool<CarEngineComponent>();

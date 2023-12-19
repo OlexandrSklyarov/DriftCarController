@@ -18,7 +18,7 @@ namespace SA.Game
         [field: SerializeField] public CarConfig Config {get; private set;}
         [field: Space, SerializeField] public WheelData[] Wheels {get; private set;}
         
-        [SerializeField] private Transform _centerOfMass;
+        [Space, SerializeField] private Transform _centerOfMass;
 
         private void Awake()
         {

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CarViewPrefab>k__BackingField: {fileID: 911640395198599261, guid: 327eb69e3b7da581b9e2967e3f17791b,
     type: 3}
+  <Camera>k__BackingField: {fileID: 11400000, guid: d0b119a8e7f74ff5599931631d623b9e,
+    type: 2}

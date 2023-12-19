@@ -4,6 +4,7 @@ namespace SA.Game
     {
         public float Time;
         public float DeltaTime;
+        public float FixedDeltaTime;
         public float UnscaledDeltaTime;
         public float UnscaledTime;
     }

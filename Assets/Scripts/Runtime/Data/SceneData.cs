@@ -1,5 +1,4 @@
 using System;
-using Cinemachine;
 using UnityEngine;
 
 namespace SA.Game
@@ -8,7 +7,6 @@ namespace SA.Game
     public class SceneData
     {
         [field: SerializeField] public Transform CarSpawnPoint {get; private set;} 
-        [field: SerializeField] public CinemachineVirtualCamera Camera {get; private set;} 
-        
+        [field: SerializeField] public Camera Camera {get; private set;} 
     }
 }

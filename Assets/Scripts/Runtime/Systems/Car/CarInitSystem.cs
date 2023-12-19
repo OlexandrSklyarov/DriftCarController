@@ -16,16 +16,19 @@ namespace SA.Game
                 Quaternion.identity
             );
 
-            data.SceneData.Camera.Follow = carView.transform;
-            data.SceneData.Camera.LookAt = carView.transform;
-
             var world = systems.GetWorld();
             var entity = world.NewEntity();
 
+            //input
             world.GetPool<PlayerInputComponent>().Add(entity);
 
+            //engine
             ref var engine = ref world.GetPool<CarEngineComponent>().Add(entity);
             engine.EngineRef = carView;
+
+            //engine
+            ref var target = ref world.GetPool<FollowTargetComponent>().Add(entity);
+            target.TargetRef = carView.transform;
         }
     }
 }

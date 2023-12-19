@@ -34,7 +34,10 @@ namespace SA.Game
 
                 AddAccel(ref input, ref engine);              
                 AddSteer(ref input, ref engine);              
-                AddBrake(ref input, ref engine);              
+                AddBrake(ref input, ref engine);    
+
+                Debug.Log($"RPM [{engine.EngineRef.Wheels[0].Wheel.rpm}] speed [{engine.EngineRef.RB.velocity.magnitude}] torque [{engine.EngineRef.Wheels[0].Wheel.brakeTorque}]");          
+                Debug.Log($"Drift points [{Mathf.Abs(Vector3.Dot(engine.EngineRef.RB.velocity.normalized, engine.EngineRef.RB.transform.right))}]");          
             }
         }
 
@@ -44,8 +47,7 @@ namespace SA.Game
 
             foreach(var w in engine.EngineRef.Wheels)
             {                
-                w.Wheel.brakeTorque = (input.IsBrake) ?
-                    config.BrakeMultiplier * config.Brake * _time.DeltaTime : 0f;
+                w.Wheel.brakeTorque = (input.IsBrake) ? config.Brake : 0f;
             }
         }
 
@@ -57,7 +59,9 @@ namespace SA.Game
             {
                 if (!w.IsFront) continue;
 
-                var steerAngle = input.Horizontal * config.MaxSteerAngle;
+                var angleMult = 1f - Mathf.Clamp(engine.EngineRef.RB.velocity.magnitude / config.SpeedThreshold, 0f, 0.95f);
+                var maxAngle = config.MaxSteerAngle * angleMult;
+                var steerAngle = input.Horizontal * maxAngle;
                 w.Wheel.steerAngle = Mathf.Lerp(w.Wheel.steerAngle, steerAngle, config.SteerTime);
             }
         }
@@ -68,7 +72,7 @@ namespace SA.Game
 
             foreach(var w in engine.EngineRef.Wheels)
             {
-                w.Wheel.motorTorque = input.Vertical * config.MovementMultiplier * config.Accel * _time.DeltaTime;
+                w.Wheel.motorTorque = input.Vertical * config.Accel;
             }
         }
     }
