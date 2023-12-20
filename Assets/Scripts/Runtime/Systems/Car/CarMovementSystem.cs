@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -35,7 +33,6 @@ namespace SA.Game
                 AddSteer(ref input, ref engine);              
                 AddBrake(ref input, ref engine); 
 
-                CalculateSpeed(ref engine);
                 TryApplyWheelPrm(ref engine);
             }
         }        
@@ -46,7 +43,12 @@ namespace SA.Game
 
             foreach(var w in engine.EngineRef.Wheels)
             {                
-                w.Wheel.brakeTorque = (input.IsBrake || input.Vertical == 0) ? config.Brake : 0f;
+                w.Wheel.brakeTorque = (input.IsBrake) ? config.Brake : 0f;
+
+                if (!input.IsBrake && input.Vertical == 0 && engine.Speed > 0f)
+                {
+                    w.Wheel.brakeTorque = config.Brake * 0.01f;
+                }
             }
         }
 
@@ -58,30 +60,26 @@ namespace SA.Game
             {
                 if (!w.IsFront) continue;
 
-                var steerAngle = input.Horizontal * config.SteerCurve.Evaluate(engine.Speed);
+                var steerAngle = input.Horizontal * config.SteerCurve.Evaluate(engine.RealSpeed);
                 w.Wheel.steerAngle = Mathf.Clamp(steerAngle, -config.MaxSteerAngle, config.MaxSteerAngle);                
             }
         }
 
         private void AddAccel(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
-            var config = engine.EngineRef.Config;
+            var config = engine.EngineRef.Config;          
+            
 
             foreach(var w in engine.EngineRef.Wheels)
             {
                 if (!w.IsDriveWheel) continue;
+                if (engine.RealSpeed >= config.MaxVelocity) continue;
 
-                w.Wheel.motorTorque = input.Vertical * config.Accel;
+                w.Wheel.motorTorque = input.Vertical * config.Accel;                
             }                     
-        }
+        }       
 
-        private void CalculateSpeed(ref CarEngineComponent engine)
-        {
-            var rearWheel = engine.EngineRef.Wheels.First(x => x.IsFront).Wheel;
-            engine.Speed = rearWheel.radius * Mathf.PI * rearWheel.rpm * 60f / 1000f;
-        }
-
-        [Conditional("UNITY_EDITOR")]
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
         private void TryApplyWheelPrm(ref CarEngineComponent engine)
         {
             var config = engine.EngineRef.Config;

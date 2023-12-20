@@ -17,24 +17,24 @@ MonoBehaviour:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 3
     <Side>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 3
   <Back>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
       <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <Stiffness>k__BackingField: 1
     <Side>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.3
-      <ExtremumValue>k__BackingField: 0.8
-      <AsymptoteSlip>k__BackingField: 0.6
-      <AsymptoteValue>k__BackingField: 0.25
-      <Stiffness>k__BackingField: 1.8
+      <ExtremumSlip>k__BackingField: 0.4
+      <ExtremumValue>k__BackingField: 1
+      <AsymptoteSlip>k__BackingField: 0.8
+      <AsymptoteValue>k__BackingField: 0.5
+      <Stiffness>k__BackingField: 1

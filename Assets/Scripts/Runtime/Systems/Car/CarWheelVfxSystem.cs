@@ -27,24 +27,28 @@ namespace SA.Game
             {
                 ref var engine = ref _enginePool.Get(ent);
                 ref var input = ref _inputPool.Get(ent);
-
-                foreach (var w in engine.EngineRef.Wheels)
-                {
-                    var isSkid = input.IsBrake && !w.IsFront;
-
-                    w.SkidVfx.emitting = isSkid;
-
-                    if (isSkid) 
-                    {
-                        w.SmokeVfx.Emit(1);
-                    }
-                }
                 
-                CheckParticles(ref engine, ref input);
+                BreakingParticle(ref engine, ref input);
+                DriftParticles(ref engine, ref input);
             }
         }
 
-        private void CheckParticles(ref CarEngineComponent engine, ref PlayerInputComponent input) 
+        private void BreakingParticle(ref CarEngineComponent engine, ref PlayerInputComponent input)
+        {    
+            foreach (var w in engine.EngineRef.Wheels)
+            {
+                var isSkid = input.IsBrake && !w.IsFront && engine.RealSpeed > engine.EngineRef.Config.Drift.SpeedThreshold;
+
+                w.SkidVfx.emitting = isSkid;
+
+                if (isSkid)
+                {
+                    w.SmokeVfx.Emit(1);
+                }
+            }
+        }
+
+        private void DriftParticles(ref CarEngineComponent engine, ref PlayerInputComponent input) 
         {
             if (input.IsBrake) return;
             
@@ -56,12 +60,11 @@ namespace SA.Game
                 var w = engine.EngineRef.Wheels[i];
                 w.Wheel.GetGroundHit(out wheelHits[i]);
 
-                if (engine.Speed > drift.SpeedThreshold)
+                if (engine.RealSpeed > drift.SpeedThreshold)
                 {    
                     if (Mathf.Abs(wheelHits[i].sidewaysSlip) + Mathf.Abs(wheelHits[i].forwardSlip) > drift.SlipAllowance)
                     {
-                        w.SkidVfx.emitting = true;
-                        w.SmokeVfx.Emit(1); 
+                        w.SkidVfx.emitting = true; 
                     }
                 }
                 else

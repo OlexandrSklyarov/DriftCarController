@@ -8,6 +8,7 @@ namespace SA.Game
     public sealed class CarConfig : ScriptableObject
     { 
         [field: SerializeField, Min(1f)] public float Accel {get; private set;} = 18000f; 
+        [field: SerializeField, Min(1f)] public float MaxVelocity {get; private set;} = 60f; 
         [field: SerializeField, Min(1f)] public float Brake {get; private set;} = 50000f; 
         [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 60f;             
         [field: SerializeField] public AnimationCurve SteerCurve {get; private set;} = AnimationCurve.Linear(0f, 60f, 80f, 0.2f);

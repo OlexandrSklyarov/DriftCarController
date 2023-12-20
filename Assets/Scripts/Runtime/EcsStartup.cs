@@ -55,6 +55,7 @@ namespace SA.Game
 #if UNITY_EDITOR
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
+                .Add(new CarCalculateSpeedSystem())
                 .Init ();    
         }
 
