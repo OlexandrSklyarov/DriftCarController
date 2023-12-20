@@ -44,6 +44,7 @@ namespace SA.Game
         {
             public WheelCollider Wheel;
             public Transform TransformRef;
+            public TrailRenderer SkidVfx;
             public bool IsFront;
         }
         #endregion
