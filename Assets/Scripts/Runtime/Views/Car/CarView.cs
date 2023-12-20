@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SA.Game
@@ -13,6 +14,28 @@ namespace SA.Game
         private void Awake()
         {
             RB.centerOfMass = _centerOfMass.localPosition;
+
+            ApplyWheelPrm();
+        }
+
+        private void ApplyWheelPrm()
+        {
+            Array.ForEach(Wheels, w =>
+            {
+                w.Wheel.forwardFriction = SetWheelPrm(w.Wheel.forwardFriction, Config.WheelConfig.Forward);                
+                w.Wheel.sidewaysFriction = SetWheelPrm(w.Wheel.sidewaysFriction, Config.WheelConfig.Side);                
+            });
+        }
+
+        private WheelFrictionCurve SetWheelPrm(WheelFrictionCurve sidewaysFriction, WheelFriction config)
+        {
+            sidewaysFriction.extremumSlip = config.ExtremumSlip;
+            sidewaysFriction.extremumValue = config.ExtremumValue;
+            sidewaysFriction.asymptoteSlip = config.AsymptoteValue;
+            sidewaysFriction.asymptoteValue = config.AsymptoteValue;
+            sidewaysFriction.stiffness = config.Stiffness;
+
+            return sidewaysFriction;
         }
 
         #region Data

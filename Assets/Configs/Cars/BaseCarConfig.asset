@@ -17,7 +17,9 @@ MonoBehaviour:
   <MaxSteerAngle>k__BackingField: 30
   <TurnSensitivity>k__BackingField: 1
   <SteerTime>k__BackingField: 0.6
-  <SpeedThreshold>k__BackingField: 65
+  <SteerControlThreshold>k__BackingField: 100
+  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 851c0e4d58ad19d15a38cde48aad885e,
+    type: 2}
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
       Guid:

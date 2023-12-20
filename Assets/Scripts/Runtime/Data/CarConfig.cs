@@ -12,7 +12,11 @@ namespace SA.Game
         [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 30f; 
         [field: SerializeField, Min(0.1f)] public float TurnSensitivity {get; private set;} = 1f;
         [field: SerializeField, Min(0.1f)] public float SteerTime {get; private set;} = 0.6f;
-        [field: SerializeField, Min(1f)] public float SpeedThreshold {get; private set;} = 100f;
+        [field: Tooltip("The speed threshold at which you lose control of wheel turning, the closer you get to the threshold the harder it is to control turning."), SerializeField, Min(1f)] 
+        public float SteerControlThreshold {get; private set;} = 100f;
+
+        [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}
+        
         [field: Space, SerializeField] public CarAudio Audio {get; private set;}
     }
 

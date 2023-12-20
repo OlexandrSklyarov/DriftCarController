@@ -62,7 +62,7 @@ namespace SA.Game
             {
                 if (!w.IsFront) continue;
 
-                var angleMult = 1f - Mathf.Clamp(engine.EngineRef.RB.velocity.magnitude / config.SpeedThreshold, 0f, 0.95f);
+                var angleMult = 1f - Mathf.Clamp(engine.EngineRef.RB.velocity.magnitude / config.SteerControlThreshold, 0f, 0.95f);
                 var maxAngle = config.MaxSteerAngle * angleMult;
                 var steerAngle = input.Horizontal * maxAngle;
                 w.Wheel.steerAngle = Mathf.Lerp(w.Wheel.steerAngle, steerAngle, config.SteerTime);
