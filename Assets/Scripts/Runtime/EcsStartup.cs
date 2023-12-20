@@ -37,7 +37,7 @@ namespace SA.Game
                 .Add(new TimeSystem())
                 .Add(new CarInitSystem())
                 .Add(new FollowCameraInitSystem())
-                .Add(new CarSkidVfxSystem())
+                .Add(new CarWheelVfxSystem())
                 .Add(new CarAudioSystem())
                 .Init ();
 

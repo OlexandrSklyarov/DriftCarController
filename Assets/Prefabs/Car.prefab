@@ -523,8 +523,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7277410202412369977}
   serializedVersion: 4
-  m_Mass: 1500
-  m_Drag: 0
+  m_Mass: 1000
+  m_Drag: 0.05
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -563,21 +563,25 @@ MonoBehaviour:
     SkidVfx: {fileID: 8410447486550939595}
     SmokeVfx: {fileID: 6503549970339762479}
     IsFront: 1
+    IsDriveWheel: 0
   - Wheel: {fileID: 897363665596131135}
     TransformRef: {fileID: 9208356891349424779}
     SkidVfx: {fileID: 5407086884389529112}
     SmokeVfx: {fileID: 979192555670779584}
     IsFront: 1
+    IsDriveWheel: 0
   - Wheel: {fileID: 6855458434239116575}
     TransformRef: {fileID: 1285735933830576986}
     SkidVfx: {fileID: 784992634118356078}
     SmokeVfx: {fileID: 3907830033250101360}
     IsFront: 0
+    IsDriveWheel: 1
   - Wheel: {fileID: 8432283912971897863}
     TransformRef: {fileID: 4544482798108360609}
     SkidVfx: {fileID: 5513804558351860358}
     SmokeVfx: {fileID: 4045611379731056045}
     IsFront: 0
+    IsDriveWheel: 1
   _centerOfMass: {fileID: 8198067240084931388}
 --- !u!1 &7888127070043646086
 GameObject:

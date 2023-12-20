@@ -9,14 +9,13 @@ namespace SA.Game
     { 
         [field: SerializeField, Min(1f)] public float Accel {get; private set;} = 18000f; 
         [field: SerializeField, Min(1f)] public float Brake {get; private set;} = 50000f; 
-        [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 30f; 
-        [field: SerializeField, Min(0.1f)] public float TurnSensitivity {get; private set;} = 1f;
-        [field: SerializeField, Min(0.1f)] public float SteerTime {get; private set;} = 0.6f;
-        [field: Tooltip("The speed threshold at which you lose control of wheel turning, the closer you get to the threshold the harder it is to control turning."), SerializeField, Min(1f)] 
-        public float SteerControlThreshold {get; private set;} = 100f;
+        [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 60f;             
+        [field: SerializeField] public AnimationCurve SteerCurve {get; private set;} = AnimationCurve.Linear(0f, 60f, 80f, 0.2f);
 
         [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}
         
+        [field: Space, SerializeField] public CarDrift Drift {get; private set;}
+
         [field: Space, SerializeField] public CarAudio Audio {get; private set;}
     }
 
@@ -29,5 +28,12 @@ namespace SA.Game
         [field: SerializeField, Min(0.1f)] public float MinSpeed {get; private set;} = 0.3f;
         [field: SerializeField, Min(0.1f)] public float MaxSpeed {get; private set;} = 40;
         [field: SerializeField, Min(0.1f)] public float SpeedAudioThreshold {get; private set;} = 50;
+    }
+
+    [Serializable]
+    public class CarDrift
+    {
+        [field: SerializeField, Min(0.1f)] public float SlipAllowance {get; private set;} = 1.3f;
+        [field: SerializeField, Min(0.1f)] public float SpeedThreshold {get; private set;} = 5f;
     }
 }

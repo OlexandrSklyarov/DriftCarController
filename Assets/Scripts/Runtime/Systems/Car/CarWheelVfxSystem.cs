@@ -1,8 +1,9 @@
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace SA.Game
 {
-    public sealed class CarSkidVfxSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class CarWheelVfxSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsPool<CarEngineComponent> _enginePool;
         private EcsPool<PlayerInputComponent> _inputPool;
@@ -38,7 +39,36 @@ namespace SA.Game
                         w.SmokeVfx.Emit(1);
                     }
                 }
+                
+                CheckParticles(ref engine, ref input);
             }
+        }
+
+        private void CheckParticles(ref CarEngineComponent engine, ref PlayerInputComponent input) 
+        {
+            if (input.IsBrake) return;
+            
+            var wheelHits = new WheelHit[engine.EngineRef.Wheels.Length];
+            var drift = engine.EngineRef.Config.Drift;
+
+            for(int i = 0; i < engine.EngineRef.Wheels.Length; i++)
+            {
+                var w = engine.EngineRef.Wheels[i];
+                w.Wheel.GetGroundHit(out wheelHits[i]);
+
+                if (engine.Speed > drift.SpeedThreshold)
+                {    
+                    if (Mathf.Abs(wheelHits[i].sidewaysSlip) + Mathf.Abs(wheelHits[i].forwardSlip) > drift.SlipAllowance)
+                    {
+                        w.SkidVfx.emitting = true;
+                        w.SmokeVfx.Emit(1); 
+                    }
+                }
+                else
+                {
+                    w.SkidVfx.emitting = false;
+                }
+            }   
         }
     }
 }

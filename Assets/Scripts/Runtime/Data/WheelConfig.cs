@@ -6,6 +6,13 @@ namespace SA.Game
     [CreateAssetMenu(fileName = "WheelConfig", menuName = "SO/Car/WheelConfig")]
     public sealed class WheelConfig : ScriptableObject
     {
+        [field: SerializeField] public WheelPair Front {get; private set;} 
+        [field: Space, SerializeField] public WheelPair Back {get; private set;} 
+    }
+
+    [Serializable]
+    public class WheelPair
+    {
         [field: SerializeField] public WheelFriction Forward {get; private set;} 
         [field: SerializeField] public WheelFriction Side {get; private set;} 
     }

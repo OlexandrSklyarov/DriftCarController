@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -35,14 +36,9 @@ namespace SA.Game
                 AddBrake(ref input, ref engine); 
 
                 CalculateSpeed(ref engine);
+                TryApplyWheelPrm(ref engine);
             }
-        }
-
-        private void CalculateSpeed(ref CarEngineComponent engine)
-        {
-            var rearWheel = engine.EngineRef.Wheels.First(x => x.IsFront).Wheel;
-            engine.Speed = rearWheel.radius * Mathf.PI * rearWheel.rpm * 60f / 1000f;
-        }
+        }        
 
         private void AddBrake(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
@@ -62,10 +58,8 @@ namespace SA.Game
             {
                 if (!w.IsFront) continue;
 
-                var angleMult = 1f - Mathf.Clamp(engine.EngineRef.RB.velocity.magnitude / config.SteerControlThreshold, 0f, 0.95f);
-                var maxAngle = config.MaxSteerAngle * angleMult;
-                var steerAngle = input.Horizontal * maxAngle;
-                w.Wheel.steerAngle = Mathf.Lerp(w.Wheel.steerAngle, steerAngle, config.SteerTime);
+                var steerAngle = input.Horizontal * config.SteerCurve.Evaluate(engine.Speed);
+                w.Wheel.steerAngle = Mathf.Clamp(steerAngle, -config.MaxSteerAngle, config.MaxSteerAngle);                
             }
         }
 
@@ -75,8 +69,47 @@ namespace SA.Game
 
             foreach(var w in engine.EngineRef.Wheels)
             {
+                if (!w.IsDriveWheel) continue;
+
                 w.Wheel.motorTorque = input.Vertical * config.Accel;
-            }
+            }                     
+        }
+
+        private void CalculateSpeed(ref CarEngineComponent engine)
+        {
+            var rearWheel = engine.EngineRef.Wheels.First(x => x.IsFront).Wheel;
+            engine.Speed = rearWheel.radius * Mathf.PI * rearWheel.rpm * 60f / 1000f;
+        }
+
+        [Conditional("UNITY_EDITOR")]
+        private void TryApplyWheelPrm(ref CarEngineComponent engine)
+        {
+            var config = engine.EngineRef.Config;
+
+            foreach(var w in engine.EngineRef.Wheels)
+            {
+                if (w.IsFront)
+                {
+                    w.Wheel.forwardFriction = SetWheelPrm(w.Wheel.forwardFriction, config.WheelConfig.Front.Forward);                
+                    w.Wheel.sidewaysFriction = SetWheelPrm(w.Wheel.sidewaysFriction, config.WheelConfig.Front.Side);
+                }
+                else
+                {
+                    w.Wheel.forwardFriction = SetWheelPrm(w.Wheel.forwardFriction, config.WheelConfig.Back.Forward);                
+                    w.Wheel.sidewaysFriction = SetWheelPrm(w.Wheel.sidewaysFriction, config.WheelConfig.Back.Side);  
+                }
+            };
+        }
+
+        private WheelFrictionCurve SetWheelPrm(WheelFrictionCurve sidewaysFriction, WheelFriction config)
+        {
+            sidewaysFriction.extremumSlip = config.ExtremumSlip;
+            sidewaysFriction.extremumValue = config.ExtremumValue;
+            sidewaysFriction.asymptoteSlip = config.AsymptoteValue;
+            sidewaysFriction.asymptoteValue = config.AsymptoteValue;
+            sidewaysFriction.stiffness = config.Stiffness;
+
+            return sidewaysFriction;
         }
     }
 }
