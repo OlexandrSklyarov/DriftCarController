@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b54e40000fd74211b3dfafe8f422dde, type: 3}
   m_Name: BaseWheel
   m_EditorClassIdentifier: 
+  <WheelDampingRate>k__BackingField: 1
+  <SuspensionDistance>k__BackingField: 0.8
+  <ForceAppPointDistance>k__BackingField: 0
+  <SP>k__BackingField:
+    <Spring>k__BackingField: 90000
+    <Damper>k__BackingField: 9000
+    <TargetPosition>k__BackingField: 1
   <Front>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4

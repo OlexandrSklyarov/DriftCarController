@@ -27,8 +27,7 @@ namespace SA.Game
             engine.EngineRef = carView;
 
             //target
-            ref var target = ref world.GetPool<FollowTargetComponent>().Add(entity);
-            target.TargetRef = carView.transform;
+            world.GetPool<FollowCameraTargetTag>().Add(entity);
 
             //audio
             ref var audio = ref world.GetPool<CarAudioComponent>().Add(entity);

@@ -46,6 +46,7 @@ namespace SA.Game
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
                 .Add(new CarInputSystem())
+                .Add(new CarCalculateSpeedSystem())
                 .Add(new CarMovementSystem())
                 .Add(new CarAnimationWheelSystem())                
                 .Add(new FollowCameraSystem())
@@ -55,7 +56,7 @@ namespace SA.Game
 #if UNITY_EDITOR
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
-                .Add(new CarCalculateSpeedSystem())
+                .Add(new CarDashbordPanelSystem())
                 .Init ();    
         }
 

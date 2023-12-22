@@ -6,8 +6,21 @@ namespace SA.Game
     [CreateAssetMenu(fileName = "WheelConfig", menuName = "SO/Car/WheelConfig")]
     public sealed class WheelConfig : ScriptableObject
     {
-        [field: SerializeField] public WheelPair Front {get; private set;} 
+        [field: SerializeField, Min(0f)] public float WheelDampingRate {get; private set;} = 1f;
+        [field: SerializeField, Min(0f)] public float SuspensionDistance {get; private set;} = 0.8f;
+        [field: SerializeField, Min(0f)] public float ForceAppPointDistance {get; private set;} = 0f;
+
+        [field: Space, SerializeField] public SuspensionSpring SP {get; private set;} 
+        [field: Space, SerializeField] public WheelPair Front {get; private set;} 
         [field: Space, SerializeField] public WheelPair Back {get; private set;} 
+    }
+
+    [Serializable]
+    public class SuspensionSpring
+    {
+        [field: SerializeField, Min(1f)] public float Spring {get; private set;} = 90000f;
+        [field: SerializeField, Min(1)] public int Damper {get; private set;} = 9000;
+        [field: SerializeField, Range(0f, 1f)] public float TargetPosition {get; private set;} = 1f;
     }
 
     [Serializable]

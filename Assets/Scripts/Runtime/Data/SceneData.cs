@@ -8,5 +8,6 @@ namespace SA.Game
     {
         [field: SerializeField] public Transform CarSpawnPoint {get; private set;} 
         [field: SerializeField] public Camera Camera {get; private set;} 
+        [field: SerializeField] public Hud HUD {get; private set;} 
     }
 }

@@ -12,29 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b54e40000fd74211b3dfafe8f422dde, type: 3}
   m_Name: DrifftWheel
   m_EditorClassIdentifier: 
+  <WheelDampingRate>k__BackingField: 1
+  <SuspensionDistance>k__BackingField: 0.8
+  <ForceAppPointDistance>k__BackingField: 0
+  <SP>k__BackingField:
+    <Spring>k__BackingField: 50000
+    <Damper>k__BackingField: 4500
+    <TargetPosition>k__BackingField: 0.95
   <Front>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 1
-      <Stiffness>k__BackingField: 3
+      <AsymptoteValue>k__BackingField: 0.5
+      <Stiffness>k__BackingField: 2
     <Side>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 1
-      <Stiffness>k__BackingField: 3
+      <AsymptoteValue>k__BackingField: 0.5
+      <Stiffness>k__BackingField: 1
   <Back>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
       <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 1
+      <Stiffness>k__BackingField: 0.5
     <Side>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.4
-      <ExtremumValue>k__BackingField: 1
-      <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
+      <ExtremumSlip>k__BackingField: 0.2
+      <ExtremumValue>k__BackingField: 0.5
+      <AsymptoteSlip>k__BackingField: 0.3
+      <AsymptoteValue>k__BackingField: 0.4
       <Stiffness>k__BackingField: 1

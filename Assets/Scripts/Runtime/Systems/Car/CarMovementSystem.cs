@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ namespace SA.Game
             foreach(var ent in _filter)
             {
                 ref var input = ref _inputPool.Get(ent);
-                ref var engine = ref _enginePool.Get(ent);  
+                ref var engine = ref _enginePool.Get(ent); 
 
                 AddAccel(ref input, ref engine);              
                 AddSteer(ref input, ref engine);              
@@ -39,18 +39,20 @@ namespace SA.Game
 
         private void AddBrake(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
-            var config = engine.EngineRef.Config;
+            var config = engine.EngineRef.Config;           
 
-            foreach(var w in engine.EngineRef.Wheels)
-            {                
-                w.Wheel.brakeTorque = (input.IsBrake) ? config.Brake : 0f;
+            foreach (var w in engine.EngineRef.Wheels)
+            {
+                var brakeMultiplier = (w.IsFront) ? 0.7f : 0.3f;
+                var brakeValue = (input.IsBrake) ? 1f : 0f;
+                w.Wheel.brakeTorque = brakeValue * config.Brake * brakeMultiplier;
 
-                if (!input.IsBrake && input.Vertical == 0 && engine.Speed > 0f)
+                if (!input.IsBrake && input.Vertical == 0 && engine.RealSpeed > 0f)
                 {
                     w.Wheel.brakeTorque = config.Brake * 0.01f;
                 }
             }
-        }
+        }        
 
         private void AddSteer(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
@@ -61,53 +63,51 @@ namespace SA.Game
                 if (!w.IsFront) continue;
 
                 var steerAngle = input.Horizontal * config.SteerCurve.Evaluate(engine.RealSpeed);
-                w.Wheel.steerAngle = Mathf.Clamp(steerAngle, -config.MaxSteerAngle, config.MaxSteerAngle);                
+
+                var slipAngle = Vector3.Angle
+                (
+                    engine.EngineRef.RB.transform.forward, 
+                    engine.EngineRef.RB.velocity - engine.EngineRef.RB.transform.forward
+                );
+
+                if (slipAngle > engine.EngineRef.Config.Drift.AutoSteeringAngleThreshold)
+                {
+                    steerAngle += Vector3.SignedAngle
+                    (
+                        engine.EngineRef.RB.transform.forward,
+                        engine.EngineRef.RB.velocity + engine.EngineRef.RB.transform.forward,
+                        Vector3.up
+                    );
+                }
+                 
+                w.Wheel.steerAngle = Mathf.Clamp(steerAngle, -config.MaxSteerAngle, config.MaxSteerAngle);             
             }
         }
 
         private void AddAccel(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
-            var config = engine.EngineRef.Config;          
-            
+            var config = engine.EngineRef.Config;  
 
             foreach(var w in engine.EngineRef.Wheels)
             {
-                if (!w.IsDriveWheel) continue;
-                if (engine.RealSpeed >= config.MaxVelocity) continue;
+                if (!w.IsDriveWheel) continue;               
 
-                w.Wheel.motorTorque = input.Vertical * config.Accel;                
+                w.Wheel.motorTorque = (engine.RealSpeed < config.SpeedLimit) ?
+                    input.Vertical * config.Accel : 0f;  
+
+                Debug.Log($"w.Wheel.motorTorque  {w.Wheel.name} {w.Wheel.motorTorque}");              
             }                     
         }       
 
         [System.Diagnostics.Conditional("UNITY_EDITOR")]
         private void TryApplyWheelPrm(ref CarEngineComponent engine)
         {
-            var config = engine.EngineRef.Config;
+            var config = engine.EngineRef.Config.WheelConfig;
 
-            foreach(var w in engine.EngineRef.Wheels)
+            Array.ForEach(engine.EngineRef.Wheels, w =>
             {
-                if (w.IsFront)
-                {
-                    w.Wheel.forwardFriction = SetWheelPrm(w.Wheel.forwardFriction, config.WheelConfig.Front.Forward);                
-                    w.Wheel.sidewaysFriction = SetWheelPrm(w.Wheel.sidewaysFriction, config.WheelConfig.Front.Side);
-                }
-                else
-                {
-                    w.Wheel.forwardFriction = SetWheelPrm(w.Wheel.forwardFriction, config.WheelConfig.Back.Forward);                
-                    w.Wheel.sidewaysFriction = SetWheelPrm(w.Wheel.sidewaysFriction, config.WheelConfig.Back.Side);  
-                }
-            };
-        }
-
-        private WheelFrictionCurve SetWheelPrm(WheelFrictionCurve sidewaysFriction, WheelFriction config)
-        {
-            sidewaysFriction.extremumSlip = config.ExtremumSlip;
-            sidewaysFriction.extremumValue = config.ExtremumValue;
-            sidewaysFriction.asymptoteSlip = config.AsymptoteValue;
-            sidewaysFriction.asymptoteValue = config.AsymptoteValue;
-            sidewaysFriction.stiffness = config.Stiffness;
-
-            return sidewaysFriction;
-        }
+                w.ApplyWheelPrm(config);
+            });
+        }       
     }
 }

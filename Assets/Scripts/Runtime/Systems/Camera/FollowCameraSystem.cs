@@ -6,7 +6,7 @@ namespace SA.Game
     public sealed class FollowCameraSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsPool<CameraFollowComponent> _cameraPool;
-        private EcsPool<FollowTargetComponent> _targetPool;
+        private EcsPool<CarEngineComponent> _enginePool;
         private EcsFilter _cameraFilter;
         private EcsFilter _targetFilter;
         private TimeService _time;
@@ -18,11 +18,12 @@ namespace SA.Game
             var world = systems.GetWorld();
 
             _cameraPool = world.GetPool<CameraFollowComponent>();   
-            _targetPool = world.GetPool<FollowTargetComponent>();   
-
+            _enginePool = world.GetPool<CarEngineComponent>();   
 
             _cameraFilter = world.Filter<CameraFollowComponent>().End();
-            _targetFilter = world.Filter<FollowTargetComponent>().End();
+            _targetFilter = world.Filter<CarEngineComponent>()
+                .Inc<FollowCameraTargetTag>()
+                .End();
         }
 
         public void Run(IEcsSystems systems)
@@ -33,30 +34,30 @@ namespace SA.Game
 
                 foreach(var targetEnt in _targetFilter)
                 {
-                    ref var target = ref _targetPool.Get(targetEnt);  
+                    ref var carEngine = ref _enginePool.Get(targetEnt); 
 
-                    if (target.TargetRef == null) continue;
-
-                    LookAtTarget(ref camera, ref target);
-                    MoveToTarget(ref camera, ref target);
+                    LookAtTarget(ref camera, ref carEngine);
+                    MoveToTarget(ref camera, ref carEngine);
                 }
             }
         }
 
-        private void MoveToTarget(ref CameraFollowComponent camera, ref FollowTargetComponent target)
+        private void MoveToTarget(ref CameraFollowComponent camera, ref CarEngineComponent carEngine)
         {
-            var targetPos = target.TargetRef.position + 
-                target.TargetRef.forward * camera.Config.Offset.z +
-                target.TargetRef.right * camera.Config.Offset.x +
-                target.TargetRef.up * camera.Config.Offset.y;
+            var trRef = carEngine.EngineRef.RB.transform;
+
+            var targetPos = trRef.position + 
+                trRef.forward * camera.Config.Offset.z +
+                trRef.right * camera.Config.Offset.x +
+                trRef.up * camera.Config.Offset.y;
 
             var camTR = camera.CameraRef.transform;
             camTR.position = Vector3.Lerp(camTR.position, targetPos, camera.Config.FollowSpeed * _time.FixedDeltaTime); 
         }
 
-        private void LookAtTarget(ref CameraFollowComponent camera, ref FollowTargetComponent target)
+        private void LookAtTarget(ref CameraFollowComponent camera, ref CarEngineComponent carEngine)
         {
-            var lookDir = target.TargetRef.position - camera.CameraRef.transform.position;
+            var lookDir = carEngine.EngineRef.RB.transform.position - camera.CameraRef.transform.position;
             var rot = Quaternion.LookRotation(lookDir, Vector3.up);
 
             camera.CameraRef.transform.rotation = Quaternion.Lerp
