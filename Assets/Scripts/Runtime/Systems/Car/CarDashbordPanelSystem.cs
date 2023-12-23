@@ -27,8 +27,9 @@ namespace SA.Game
 
                 var config = engine.EngineRef.Config;
 
-                _hud.SpeedDisplay.SetNormalizeValue(engine.RealSpeed / config.SpeedLimit, (int)engine.RealSpeed);
-                _hud.RPMDisplay.SetNormalizeValue(engine.RPM / config.MaxRPM, (int)engine.RPM);
+                _hud.CarDashbord.SpeedDisplay.SetNormalizeValue(engine.RealSpeed / config.SpeedLimit, (int)engine.RealSpeed);
+                _hud.CarDashbord.RPMDisplay.SetNormalizeValue(engine.RPM / config.Gear.RedLineRPM, (int)engine.RPM);
+                _hud.CarDashbord.SetGearValue(engine.GearIndex+1);
             }
         }
     }

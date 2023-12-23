@@ -6,6 +6,7 @@ namespace SA.Game
     {
         Vector2 Movement {get;}
         bool IsBreak {get;}
+
         void ActiveInput();
         void DisableInput();
     }

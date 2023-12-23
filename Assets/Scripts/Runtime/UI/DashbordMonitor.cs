@@ -12,6 +12,9 @@ namespace SA.Game
         [SerializeField] private float _maxAngle;
         [SerializeField] private bool _isShowValueDidsplay;
 
+        private float _curAngle;
+        private float angleVelocity;
+
         private void Awake() 
         {
             _valueDisplay.SetActive(_isShowValueDidsplay);    
@@ -30,8 +33,10 @@ namespace SA.Game
 
         private void RotateArrow(float normValue)
         {
+            normValue = Mathf.Clamp01(normValue);
             var angle = Mathf.Lerp(_minAngle, _maxAngle, normValue);
-            _arrow.localRotation = Quaternion.Euler(0f, 0f, angle);
+            _curAngle = Mathf.SmoothDampAngle(_curAngle, angle, ref angleVelocity, 0.1f);
+            _arrow.localRotation = Quaternion.Euler(0f, 0f, _curAngle);
         }
     }
 }

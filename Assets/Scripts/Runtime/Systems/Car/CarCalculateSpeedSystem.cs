@@ -31,12 +31,7 @@ namespace SA.Game
                 engine.SpeedOnMph = engine.SpeedOnKmh * 0.62f; // converting kmh to mph
 
                 var mag = new Vector2(engine.EngineRef.RB.velocity.x, engine.EngineRef.RB.velocity.z).magnitude;
-                engine.RealSpeed = mag;
-
-                engine.RPM = rearWheel.rpm;
-
-                UnityEngine.Debug.Log($"speed KMH: {Mathf.RoundToInt(engine.SpeedOnKmh)} speed MPH: {Mathf.RoundToInt(engine.SpeedOnMph)} RealSpeed: {Mathf.RoundToInt(engine.RealSpeed)}");
-
+                engine.RealSpeed = mag;              
             }
         }
     }

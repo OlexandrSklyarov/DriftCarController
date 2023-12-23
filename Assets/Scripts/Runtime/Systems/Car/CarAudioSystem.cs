@@ -27,7 +27,7 @@ namespace SA.Game
                 ref var audio = ref _audioPool.Get(ent);
                 ref var engine = ref _enginePool.Get(ent);
 
-                var speed = engine.EngineRef.RB.velocity.magnitude;
+                var speed = engine.RealSpeed;
 
                 audio.CurrentSpeed = speed;
                 audio.PitchFromCar = speed / engine.EngineRef.Config.Audio.SpeedAudioThreshold;               

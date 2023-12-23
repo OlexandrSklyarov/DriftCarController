@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d99298ac832a387ea32f2c4e3247f29, type: 3}
   m_Name: BaseCarConfig
   m_EditorClassIdentifier: 
-  <Accel>k__BackingField: 2500
+  <MotorPower>k__BackingField: 100
   <SpeedLimit>k__BackingField: 280
-  <MaxRPM>k__BackingField: 11000
   <Brake>k__BackingField: 500000
   <MaxSteerAngle>k__BackingField: 80
   <SteerCurve>k__BackingField:
@@ -41,11 +40,59 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <Gear>k__BackingField:
+    <RedLineRPM>k__BackingField: 6500
+    <IdleRPM>k__BackingField: 800
+    <IdleRPMMultiplier>k__BackingField: 0.8
+    <IncreaseRPM>k__BackingField: 5500
+    <DecreaseRPM>k__BackingField: 3300
+    <ChangeRPMTime>k__BackingField: 3
+    <DifferentialRatio>k__BackingField: 0.5
+    <GearRatios>k__BackingField:
+    - 3
+    - 2.5
+    - 2
+    - 1.5
+    - 1
+    - 0.8
+    <RpmCurve>k__BackingField:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9060303
+        value: 0.9918581
+        inSlope: -0.06704856
+        outSlope: -0.06704856
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.15634881
+        outWeight: 0.47105166
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.09038339
+        outSlope: -0.09038339
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.87808555
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   <WheelConfig>k__BackingField: {fileID: 11400000, guid: 851c0e4d58ad19d15a38cde48aad885e,
     type: 2}
   <Drift>k__BackingField:
-    <SlipAllowance>k__BackingField: 1
-    <SpeedThreshold>k__BackingField: 7
+    <SlipAllowance>k__BackingField: 1.2
+    <SpeedThreshold>k__BackingField: 10
     <AutoSteeringAngleThreshold>k__BackingField: 60
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
@@ -55,8 +102,8 @@ MonoBehaviour:
         Data3: -1909594959
         Data4: 1783861278
       Path: event:/Car/MoveEngine
-    <MinEnginePitch>k__BackingField: 0.2
+    <MinEnginePitch>k__BackingField: 0.35
     <MaxEnginePitch>k__BackingField: 1
-    <MinSpeed>k__BackingField: 0.3
-    <MaxSpeed>k__BackingField: 40
-    <SpeedAudioThreshold>k__BackingField: 50
+    <MinSpeed>k__BackingField: 1
+    <MaxSpeed>k__BackingField: 270
+    <SpeedAudioThreshold>k__BackingField: 280
