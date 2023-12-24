@@ -10,16 +10,19 @@ namespace SA.Game
         [field: SerializeField, Min(1f)] public float MotorPower {get; private set;} = 100f; 
         [field: SerializeField, Min(1f)] public float SpeedLimit {get; private set;} = 60f; 
         [field: SerializeField, Min(1f)] public float Brake {get; private set;} = 50000f; 
-        [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 60f;             
-        [field: SerializeField] public AnimationCurve SteerCurve {get; private set;} = AnimationCurve.Linear(0f, 60f, 80f, 0.2f);
-        
-        [field: Space, SerializeField] public Gear Gear {get; private set;}       
-
+        [field: Space, SerializeField] public Steer Steer {get; private set;} 
+        [field: Space, SerializeField] public Gear Gear {get; private set;}     
         [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}
-        
         [field: Space, SerializeField] public CarDrift Drift {get; private set;}
-
         [field: Space, SerializeField] public CarAudio Audio {get; private set;}
+    }
+
+    [Serializable]
+    public class Steer
+    {
+        [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 60f;             
+        [field: SerializeField, Min(1f)] public float SteerSmoothTime {get; private set;} = 10f;             
+        [field: SerializeField] public AnimationCurve SteerCurve {get; private set;} = AnimationCurve.Linear(0f, 60f, 80f, 0.2f);
     }
 
     [Serializable]

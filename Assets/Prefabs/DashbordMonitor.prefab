@@ -305,8 +305,9 @@ MonoBehaviour:
   _value: {fileID: 3605254563781453696}
   _arrow: {fileID: 6258303288211027084}
   _valueDisplay: {fileID: 8628981324837814337}
-  _minAngle: -30
-  _maxAngle: 220
+  _maxValue: 200
+  _startAngle: -20
+  _endAngle: 210
   _isShowValueDidsplay: 0
 --- !u!1 &3062439668813821744
 GameObject:
@@ -333,16 +334,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3062439668813821744}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6258303288211027084}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 13.9, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1433646711517260973

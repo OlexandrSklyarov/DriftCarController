@@ -603,17 +603,22 @@ PrefabInstance:
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.39129347
+      value: -0.37015203
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.920266
+      value: -0.92897123
       objectReference: {fileID: 0}
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 133.93
+      value: -223.45
       objectReference: {fileID: 0}
     - target: {fileID: 6293173399942760849, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
@@ -643,13 +648,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
+      propertyPath: _endAngle
+      value: -224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
       propertyPath: _maxAngle
       value: -135
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
+      propertyPath: _maxValue
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
       propertyPath: _minAngle
       value: 133
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
+      propertyPath: _startAngle
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
@@ -830,22 +850,17 @@ PrefabInstance:
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.3778408
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.9271839
       objectReference: {fileID: 0}
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.9258706
+      value: 0.37460655
       objectReference: {fileID: 0}
     - target: {fileID: 6258303288211027084, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -135.6
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 7544912729240498177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
@@ -870,13 +885,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
+      propertyPath: _endAngle
+      value: -224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
       propertyPath: _maxAngle
       value: -135
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
+      propertyPath: _maxValue
+      value: 6500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
       propertyPath: _minAngle
       value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
+        type: 3}
+      propertyPath: _startAngle
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 7949287786323075177, guid: 7dca5ed4f9bea3f64ac9fe22f6401024,
         type: 3}
