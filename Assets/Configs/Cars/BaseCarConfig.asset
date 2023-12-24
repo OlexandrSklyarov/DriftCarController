@@ -88,7 +88,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 851c0e4d58ad19d15a38cde48aad885e,
+  <WheelConfig>k__BackingField: {fileID: 11400000, guid: c72d4f84d4a4bbc5cbf8f3bbc7a26083,
     type: 2}
   <Drift>k__BackingField:
     <SlipAllowance>k__BackingField: 1.2

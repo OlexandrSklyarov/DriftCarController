@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <FollowSpeed>k__BackingField: 10
   <LookSpeed>k__BackingField: 75
-  <Offset>k__BackingField: {x: 0, y: 4.7, z: -10.33}
+  <Offset>k__BackingField: {x: 0, y: 4.3, z: -11.95}

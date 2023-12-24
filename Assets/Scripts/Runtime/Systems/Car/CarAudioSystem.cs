@@ -30,24 +30,39 @@ namespace SA.Game
                 var speed = engine.RealSpeed;
 
                 audio.CurrentSpeed = speed;
-                audio.PitchFromCar = speed / engine.EngineRef.Config.Audio.SpeedAudioThreshold;               
-                
-                if (audio.CurrentSpeed < engine.EngineRef.Config.Audio.MinSpeed)
-                {                    
-                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MinEnginePitch); 
+                audio.PitchFromCar = speed / engine.EngineRef.Config.Audio.SpeedAudioThreshold;
+
+                if (IsMinSpeed(ref audio, ref engine))
+                {
+                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MinEnginePitch);
                 }
 
-                if (audio.CurrentSpeed > engine.EngineRef.Config.Audio.MinSpeed &&
-                    audio.CurrentSpeed < engine.EngineRef.Config.Audio.MaxSpeed)
+                if (IsMiddleSpeed(ref audio, ref engine))
                 {
-                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MinEnginePitch + audio.PitchFromCar); 
+                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MinEnginePitch + audio.PitchFromCar);
                 }
 
-                if (audio.CurrentSpeed > engine.EngineRef.Config.Audio.MaxSpeed)
+                if (IsMaxSpeed(ref audio, ref engine))
                 {
-                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MaxEnginePitch); 
+                    SetEngineAudioPitch(ref audio, engine.EngineRef.Config.Audio.MaxEnginePitch);
                 }
             }
+        }
+
+        private bool IsMaxSpeed(ref CarAudioComponent audio, ref CarEngineComponent engine)
+        {
+            return audio.CurrentSpeed > engine.EngineRef.Config.Audio.MaxSpeed;
+        }
+
+        private bool IsMiddleSpeed(ref CarAudioComponent audio, ref CarEngineComponent engine)
+        {
+            return audio.CurrentSpeed > engine.EngineRef.Config.Audio.MinSpeed &&
+                audio.CurrentSpeed < engine.EngineRef.Config.Audio.MaxSpeed;
+        }
+
+        private bool IsMinSpeed(ref CarAudioComponent audio, ref CarEngineComponent engine)
+        {
+            return audio.CurrentSpeed < engine.EngineRef.Config.Audio.MinSpeed;
         }
 
         private void SetEngineAudioPitch(ref CarAudioComponent audio, float pitch)
