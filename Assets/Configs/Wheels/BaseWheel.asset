@@ -16,8 +16,8 @@ MonoBehaviour:
   <SuspensionDistance>k__BackingField: 0.8
   <ForceAppPointDistance>k__BackingField: 0
   <SP>k__BackingField:
-    <Spring>k__BackingField: 90000
-    <Damper>k__BackingField: 9000
+    <Spring>k__BackingField: 8000
+    <Damper>k__BackingField: 2000
     <TargetPosition>k__BackingField: 1
   <Front>k__BackingField:
     <Forward>k__BackingField:
@@ -31,7 +31,7 @@ MonoBehaviour:
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
       <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <Stiffness>k__BackingField: 2.4
   <Back>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 0.4
@@ -43,5 +43,5 @@ MonoBehaviour:
       <ExtremumSlip>k__BackingField: 0.4
       <ExtremumValue>k__BackingField: 1
       <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <AsymptoteValue>k__BackingField: 0.7
+      <Stiffness>k__BackingField: 2.4

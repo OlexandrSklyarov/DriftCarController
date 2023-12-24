@@ -29,7 +29,7 @@ namespace SA.Game
 
                 _hud.CarDashbord.SpeedDisplay.SetValue(engine.RealSpeed);
                 _hud.CarDashbord.RPMDisplay.SetValue(engine.RPM);
-                _hud.CarDashbord.SetGearValue(engine.GearIndex+1);
+                _hud.CarDashbord.SetGearValue(1);
             }
         }
     }

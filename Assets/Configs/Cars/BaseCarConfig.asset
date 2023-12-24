@@ -12,88 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d99298ac832a387ea32f2c4e3247f29, type: 3}
   m_Name: BaseCarConfig
   m_EditorClassIdentifier: 
-  <MotorPower>k__BackingField: 100
-  <SpeedLimit>k__BackingField: 280
-  <Brake>k__BackingField: 500000
-  <MaxSteerAngle>k__BackingField: 80
-  <SteerCurve>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 60
-      inSlope: 0
-      outSlope: -0.7475
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 80
-      value: 0.2
-      inSlope: -0.7475
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  <MotorPower>k__BackingField: 80000
+  <SpeedLimit>k__BackingField: 100
+  <Brake>k__BackingField: 50000
+  <Steer>k__BackingField:
+    <MaxSteerAngle>k__BackingField: 20
+    <Sensitivity>k__BackingField: 0.7
   <Gear>k__BackingField:
-    <RedLineRPM>k__BackingField: 6500
-    <IdleRPM>k__BackingField: 800
-    <IdleRPMMultiplier>k__BackingField: 0.8
-    <IncreaseRPM>k__BackingField: 5500
-    <DecreaseRPM>k__BackingField: 3300
-    <ChangeRPMTime>k__BackingField: 3
-    <DifferentialRatio>k__BackingField: 0.5
-    <GearRatios>k__BackingField:
-    - 3
-    - 2.5
-    - 2
-    - 1.5
-    - 1
-    - 0.8
-    <RpmCurve>k__BackingField:
+    <AccelMultiplierCurve>k__BackingField:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        time: 0.001033783
+        value: 2.994751
+        inSlope: 1.5868099
+        outSlope: 1.5868099
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.22937638
       - serializedVersion: 3
-        time: 0.9060303
-        value: 0.9918581
-        inSlope: -0.06704856
-        outSlope: -0.06704856
+        time: 0.19754322
+        value: 2.4501607
+        inSlope: -5.2570477
+        outSlope: -5.2570477
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.15634881
-        outWeight: 0.47105166
+        inWeight: 0.05411378
+        outWeight: 0.046558823
       - serializedVersion: 3
         time: 1
-        value: 0
-        inSlope: -0.09038339
-        outSlope: -0.09038339
+        value: 1
+        inSlope: 0.35435158
+        outSlope: 0.35435158
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.87808555
+        inWeight: 0.102290094
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  <WheelConfig>k__BackingField: {fileID: 11400000, guid: c72d4f84d4a4bbc5cbf8f3bbc7a26083,
+  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 2a0eac2f934a9b8d99e684f4e9a6f67d,
     type: 2}
   <Drift>k__BackingField:
-    <SlipAllowance>k__BackingField: 1.2
-    <SpeedThreshold>k__BackingField: 10
-    <AutoSteeringAngleThreshold>k__BackingField: 60
+    <SlipAllowance>k__BackingField: 0.7
+    <SpeedThreshold>k__BackingField: 5
+    <AutoSteeringAngleThreshold>k__BackingField: 40
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
       Guid:

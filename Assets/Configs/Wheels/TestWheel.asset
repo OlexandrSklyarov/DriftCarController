@@ -16,32 +16,32 @@ MonoBehaviour:
   <SuspensionDistance>k__BackingField: 0.8
   <ForceAppPointDistance>k__BackingField: 0
   <SP>k__BackingField:
-    <Spring>k__BackingField: 50000
-    <Damper>k__BackingField: 4500
+    <Spring>k__BackingField: 4000
+    <Damper>k__BackingField: 2000
     <TargetPosition>k__BackingField: 1
   <Front>k__BackingField:
     <Forward>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.4
+      <ExtremumSlip>k__BackingField: 1
       <ExtremumValue>k__BackingField: 1
-      <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <AsymptoteSlip>k__BackingField: 1
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 5
     <Side>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.4
+      <ExtremumSlip>k__BackingField: 1
       <ExtremumValue>k__BackingField: 1
-      <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <AsymptoteSlip>k__BackingField: 1
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 5
   <Back>k__BackingField:
     <Forward>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.6
-      <ExtremumValue>k__BackingField: 2
-      <AsymptoteSlip>k__BackingField: 0.8
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <ExtremumSlip>k__BackingField: 1
+      <ExtremumValue>k__BackingField: 1
+      <AsymptoteSlip>k__BackingField: 1
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 5
     <Side>k__BackingField:
-      <ExtremumSlip>k__BackingField: 0.4
-      <ExtremumValue>k__BackingField: 0.5
-      <AsymptoteSlip>k__BackingField: 0.3
-      <AsymptoteValue>k__BackingField: 0.5
-      <Stiffness>k__BackingField: 2
+      <ExtremumSlip>k__BackingField: 1
+      <ExtremumValue>k__BackingField: 1
+      <AsymptoteSlip>k__BackingField: 1
+      <AsymptoteValue>k__BackingField: 1
+      <Stiffness>k__BackingField: 5

@@ -22,17 +22,33 @@ namespace SA.Game
         {
             foreach(var ent in _filter)
             {
-                ref var engine = ref _enginePool.Get(ent);                
+                ref var engine = ref _enginePool.Get(ent);
 
-                var rearWheel = engine.EngineRef.Wheels.First(x => x.IsDriveWheel).Wheel;
-                
-                var circumFerence = 2.0f * Mathf.PI * rearWheel.radius; // Finding circumFerence 2 Pi R
-                engine.SpeedOnKmh = (circumFerence * rearWheel.rpm) * 60 / 10000f; // finding kmh
-                engine.SpeedOnMph = engine.SpeedOnKmh * 0.62f; // converting kmh to mph
-
-                var mag = new Vector2(engine.EngineRef.RB.velocity.x, engine.EngineRef.RB.velocity.z).magnitude;
-                engine.RealSpeed = mag;              
+                CalcRPM(ref engine);
+                CalcSpeed(ref engine);  
             }
+        }
+
+        private void CalcRPM(ref CarEngineComponent engine)
+        {
+            var count = 0;
+            var rpm = 0f;
+
+            foreach (var w in engine.EngineRef.Wheels)
+            {
+                if (!w.IsDriveWheel) continue;
+                rpm += w.Wheel.rpm;
+                count++;
+            }
+
+            if (count <= 0) return;
+            
+            engine.RPM = rpm / count;
+        }
+
+        private void CalcSpeed(ref CarEngineComponent engine)
+        {
+            engine.RealSpeed = new Vector2(engine.EngineRef.RB.velocity.x, engine.EngineRef.RB.velocity.z).magnitude;
         }
     }
 }
