@@ -29,6 +29,9 @@ namespace SA.Game
             //target
             world.GetPool<FollowCameraTargetTag>().Add(entity);
 
+            //drift
+            world.GetPool<CarDriftComponent>().Add(entity);
+
             //audio
             ref var audio = ref world.GetPool<CarAudioComponent>().Add(entity);
             audio.MoveSFX = data.AudioService.Create2DAudioInstance(carView.Config.Audio.EngineMoveSfx);

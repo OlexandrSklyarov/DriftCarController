@@ -40,7 +40,6 @@ namespace SA.Game
     {
         [field: SerializeField, Min(0.1f)] public float SlipAllowance {get; private set;} = 1.3f;
         [field: SerializeField, Min(0.1f)] public float SpeedThreshold {get; private set;} = 5f;
-        [field: SerializeField, Min(0.1f)] public float AutoSteeringAngleThreshold {get; private set;} = 60f;
     }  
 
     [Serializable]

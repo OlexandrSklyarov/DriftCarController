@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c13e2a4de9250bf0b0c90daf4b303f1
+guid: 55005488770a604aea62ab8a7bb1dfd6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 1304b06600cf8ed929290c3d3cba8075, type: 2}
+      name: Track
+    second: {fileID: 2100000, guid: 89430f8123a10ad30a1ee0ce6b876b59, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -93,7 +93,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

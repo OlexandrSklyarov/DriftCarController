@@ -48,7 +48,8 @@ namespace SA.Game
 
         private void CalcSpeed(ref CarEngineComponent engine)
         {
-            engine.RealSpeed = new Vector2(engine.EngineRef.RB.velocity.x, engine.EngineRef.RB.velocity.z).magnitude;
+            var val = new Vector2(engine.EngineRef.RB.velocity.x, engine.EngineRef.RB.velocity.z).magnitude;
+            engine.RealSpeed = val * 2.236936f;
         }
     }
 }

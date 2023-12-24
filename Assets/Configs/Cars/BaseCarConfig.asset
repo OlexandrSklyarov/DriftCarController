@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d99298ac832a387ea32f2c4e3247f29, type: 3}
   m_Name: BaseCarConfig
   m_EditorClassIdentifier: 
-  <MotorPower>k__BackingField: 80000
-  <SpeedLimit>k__BackingField: 100
-  <Brake>k__BackingField: 50000
+  <MotorPower>k__BackingField: 100000
+  <SpeedLimit>k__BackingField: 120
+  <Brake>k__BackingField: 7000
   <Steer>k__BackingField:
     <MaxSteerAngle>k__BackingField: 20
-    <Sensitivity>k__BackingField: 0.7
+    <Sensitivity>k__BackingField: 1
   <Gear>k__BackingField:
     <AccelMultiplierCurve>k__BackingField:
       serializedVersion: 2
@@ -52,12 +52,11 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 2a0eac2f934a9b8d99e684f4e9a6f67d,
+  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 2ec03f50393d93216adeda0fc463bb92,
     type: 2}
   <Drift>k__BackingField:
     <SlipAllowance>k__BackingField: 0.7
     <SpeedThreshold>k__BackingField: 5
-    <AutoSteeringAngleThreshold>k__BackingField: 40
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
       Guid:

@@ -5,8 +5,6 @@ namespace SA.Game
     {
         public ICarEngine EngineRef;
         public float RealSpeed;
-        public float SpeedOnKmh;
-        public float SpeedOnMph;
         public float RPM;
     }
 }
