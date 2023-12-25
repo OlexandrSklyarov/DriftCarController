@@ -90,8 +90,6 @@ namespace SA.Game
 
         private void OnDestroy () 
         {
-            _sharedData.AudioService.Clear();
-
             _updateSystems?.Destroy ();
             _updateSystems = null;
 

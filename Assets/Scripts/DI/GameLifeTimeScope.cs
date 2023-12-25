@@ -10,12 +10,11 @@ namespace SA.Game
         
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.Log("GameLifetimeScope Configure...");
-
             builder.RegisterInstance(_mainConfig);
 
             builder.Register<WindowManager>(Lifetime.Singleton).WithParameter(_mainConfig.Window);
             builder.Register<AudioService>(Lifetime.Singleton);
+            builder.Register<PersistentDataManager>(Lifetime.Singleton);
 
             RegisterInput(builder);
             

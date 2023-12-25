@@ -28,23 +28,41 @@ namespace SA.Game
 
             if (!_cashedWindows.TryGetValue(type, out IWindow window))
             {
-                window = CreateWindow<T>();
-                _cashedWindows.Add(type, window);
-            }
+                CreateAndShow<T>(type);
 
-            if (window.IsOpened) 
-            {
-                Debug.Log($"window {type} opened...");
                 return;
             }
 
+            if (window.IsOpened) return;
+
+            Show(window);
+        }
+
+        private void CreateAndShow<T>(Type type) where T : IWindow
+        {
+            IWindow window = CreateWindow<T>();
+            window.Init(_resolver);
+            _cashedWindows.Add(type, window);
             Show(window);
         }
 
         private void Show(IWindow window)
         {
             _openedWindows.Push(window);
+            window.OnCloseEvent += OnWindowClose;
             window.Show();
+        }
+
+        private void OnWindowClose(IWindow window)
+        {
+            var lastOpenedWindow = _openedWindows.Peek();
+            if (lastOpenedWindow != window)
+            {
+                throw new ArgumentException($"The window ({window.Name}) being closed is not the same as the last ({lastOpenedWindow.Name}) one added to the stack.");
+            }
+
+            window.OnCloseEvent -= OnWindowClose;
+            _openedWindows.Pop();
         }
 
         private IWindow CreateWindow<T>() where T : IWindow
@@ -67,7 +85,9 @@ namespace SA.Game
         {
             while (_openedWindows.Count > 0)
             {
-                _openedWindows.Pop().Hide();
+                var window = _openedWindows.Pop();
+                window.OnCloseEvent -= OnWindowClose;
+                window.Hide();
             }
         }
     }
