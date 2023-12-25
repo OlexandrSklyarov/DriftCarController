@@ -5,7 +5,7 @@ namespace SA.Game
     [Serializable]
     public class PlayerSaveData
     {
-        public SoundData Sound {get;}
+        public SoundData Sound;
 
         public PlayerSaveData()
         {
@@ -28,5 +28,10 @@ namespace SA.Game
             public float Sfx;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return $"{Sound.Master} + {Sound.Music} + {Sound.Ambience} {Sound.Sfx}";
+        }
     }
 }

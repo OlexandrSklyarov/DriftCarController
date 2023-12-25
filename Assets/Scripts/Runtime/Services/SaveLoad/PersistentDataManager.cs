@@ -18,8 +18,7 @@ namespace SA.Game
 
         private void LoadData()
         {
-            Debug.Log("LOAD...");
-            var str = PlayerPrefs.GetString(PLAYER_DATA_KEY, string.Empty);
+            var str = PlayerPrefs.GetString(PLAYER_DATA_KEY);
 
             if (str == string.Empty)
             {
@@ -34,8 +33,6 @@ namespace SA.Game
         {
             var str = JsonUtility.ToJson(_data);
             PlayerPrefs.SetString(PLAYER_DATA_KEY, str);
-
-            Debug.Log("SAVE...");
         }
 
         public void Dispose()

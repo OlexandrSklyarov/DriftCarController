@@ -9,9 +9,9 @@ namespace SA.Game
     public class AudioService : IDisposable
     {
         public float MasterVolume => _dataManager.Data.Sound.Master;
-        public float MusicVolume => _dataManager.Data.Sound.Master;
-        public float AmbienceVolume => _dataManager.Data.Sound.Master;
-        public float SFXVolume => _dataManager.Data.Sound.Master;
+        public float MusicVolume => _dataManager.Data.Sound.Music;
+        public float AmbienceVolume => _dataManager.Data.Sound.Ambience;
+        public float SFXVolume => _dataManager.Data.Sound.Sfx;
 
         private readonly List<EventInstance> _eventInstances = new();
         private readonly PersistentDataManager _dataManager;
@@ -64,28 +64,24 @@ namespace SA.Game
         {
             SetBusVolume(ref _masterBus, value);
             _dataManager.Data.Sound.Master = value;
-            _dataManager.Save();
         }
 
         public void SetMusic(float value) 
         {
             SetBusVolume(ref _musicBus, value);
             _dataManager.Data.Sound.Music = value;
-            _dataManager.Save();
         }
 
         public void SetAmbience(float value) 
         { 
             SetBusVolume(ref _ambienceBus, value);
             _dataManager.Data.Sound.Ambience = value;
-            _dataManager.Save();
         }
         
         public void SetSFX(float value) 
         {
             SetBusVolume(ref _sfxBus, value);  
             _dataManager.Data.Sound.Sfx = value;
-            _dataManager.Save();  
         } 
 
         public void SetBusVolume(ref Bus bus, float value) => bus.setVolume(Mathf.Clamp01(value));

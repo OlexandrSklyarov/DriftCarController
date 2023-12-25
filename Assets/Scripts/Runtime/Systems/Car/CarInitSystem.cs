@@ -1,5 +1,4 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace SA.Game
 {
@@ -13,7 +12,7 @@ namespace SA.Game
             (
                 data.MainConfig.CarViewPrefab,
                 data.SceneData.CarSpawnPoint.position,
-                Quaternion.identity
+                data.SceneData.CarSpawnPoint.rotation
             );
 
             var world = systems.GetWorld();

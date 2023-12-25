@@ -20,10 +20,8 @@ namespace SA.Game
         [Inject] private AudioService _audioService;
         [Inject] private IInputService _inputService;   
 
-        private async UniTaskVoid Start () 
-        {            
-            Debug.Log("Startup init...");
-
+        private async UniTaskVoid Start()
+        {     
             _sharedData = new SharedData()
             {
                 SceneData = _sceneData,
@@ -40,6 +38,11 @@ namespace SA.Game
             _fixedUpdateSystems = new EcsSystems(_world, _sharedData);
             _lateUpdateSystems = new EcsSystems(_world, _sharedData);
 
+            RegisterSystems();               
+        }
+
+        private void RegisterSystems()
+        {
             _updateSystems            
 #if UNITY_EDITOR
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
@@ -70,8 +73,8 @@ namespace SA.Game
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
                 .Add(new CarDashbordPanelSystem())
-                .Init ();    
-        }        
+                .Init (); 
+        }
 
         private void Update () 
         {

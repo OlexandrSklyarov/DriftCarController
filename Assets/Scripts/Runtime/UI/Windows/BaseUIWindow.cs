@@ -20,6 +20,12 @@ namespace SA.Game
             _closeButton.onClick.AddListener(CloseWindow);            
         }
 
+        public void Init(IObjectResolver resolver)
+        {
+            _resolver = resolver;
+            OnInit();
+        }
+
         private void CloseWindow()
         {
             OnCloseEvent?.Invoke(this);
@@ -36,12 +42,6 @@ namespace SA.Game
         public void Show()
         {
             gameObject.SetActive(true);
-        }
-
-        public void Init(IObjectResolver resolver)
-        {
-            _resolver = resolver;
-            OnInit();
-        }
+        }        
     }
 }
