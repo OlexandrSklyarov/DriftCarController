@@ -10,7 +10,7 @@ namespace SA.Game
 
         public void Init(IEcsSystems systems)
         {
-            _hud = systems.GetShared<SharedData>().SceneData.HUD;
+            _hud = systems.GetShared<SharedData>().HUD;
 
             var world = systems.GetWorld();
 

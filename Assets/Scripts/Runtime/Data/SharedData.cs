@@ -8,5 +8,7 @@ namespace SA.Game
         public IInputService InputService;
         public TimeService TimeService;
         public AudioService AudioService;
+        public Hud HUD;
+        public WindowManager WindowManager;
     }
 }

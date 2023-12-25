@@ -1,5 +1,4 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace SA.Game 
 {
@@ -14,11 +13,7 @@ namespace SA.Game
 
         public void Run(IEcsSystems systems)
         {
-            _ts.Time = Time.time;
-            _ts.UnscaledTime = Time.unscaledTime;
-            _ts.DeltaTime = Time.deltaTime;
-            _ts.FixedDeltaTime = Time.fixedDeltaTime;
-            _ts.UnscaledDeltaTime = Time.unscaledDeltaTime;
+            _ts.OnUpdate();
         }
     }
 }

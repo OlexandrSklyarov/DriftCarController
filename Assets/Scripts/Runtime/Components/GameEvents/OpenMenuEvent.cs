@@ -1,7 +1,7 @@
 
 namespace SA.Game
 {
-    public interface IService
+    public struct OpenMenuEvent
     {        
     }
 }

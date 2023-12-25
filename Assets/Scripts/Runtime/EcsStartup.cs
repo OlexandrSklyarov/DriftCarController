@@ -1,34 +1,44 @@
+using Cysharp.Threading.Tasks;
 using Leopotam.EcsLite;
 using UnityEngine;
+using VContainer;
 
 namespace SA.Game 
 {
     sealed class EcsStartup : MonoBehaviour 
     {
-        [SerializeField] private SceneData _sceneData;
-        [SerializeField] private MainConfig _config;
+        [SerializeField] private SceneData _sceneData;        
 
         private SharedData _sharedData;
-        private EcsWorld _world;        
+        private EcsWorld _world;             
         private IEcsSystems _updateSystems;
         private IEcsSystems _fixedUpdateSystems;
         private IEcsSystems _lateUpdateSystems;
 
-        private void Start () 
-        {
+        [Inject] private MainConfig _mainConfig;
+        [Inject] private WindowManager _windowManager;
+        [Inject] private AudioService _audioService;
+        [Inject] private IInputService _inputService;   
+
+        private async UniTaskVoid Start () 
+        {            
+            Debug.Log("Startup init...");
+
             _sharedData = new SharedData()
             {
                 SceneData = _sceneData,
-                MainConfig = _config,
-                InputService = new KeyboardInput(),
+                MainConfig = _mainConfig,
+                InputService = _inputService,
                 TimeService = new TimeService(),
-                AudioService = new AudioService()
+                AudioService = _audioService,
+                HUD = await MonoComponentExtensions.FindComponentAsync<Hud>(),
+                WindowManager = _windowManager
             };
 
-            _world = new EcsWorld ();
-            _updateSystems = new EcsSystems (_world, _sharedData);
-            _fixedUpdateSystems = new EcsSystems (_world, _sharedData);
-            _lateUpdateSystems = new EcsSystems (_world, _sharedData);
+            _world = new EcsWorld();
+            _updateSystems = new EcsSystems(_world, _sharedData);
+            _fixedUpdateSystems = new EcsSystems(_world, _sharedData);
+            _lateUpdateSystems = new EcsSystems(_world, _sharedData);
 
             _updateSystems            
 #if UNITY_EDITOR
@@ -40,6 +50,8 @@ namespace SA.Game
                 .Add(new CarWheelVfxSystem())
                 .Add(new CarCalculateDriftPointSystem())
                 .Add(new CarAudioSystem())
+                
+                .Add(new OpenMenuSystem())
                 .Init ();
 
             _fixedUpdateSystems            
@@ -59,7 +71,7 @@ namespace SA.Game
 #endif
                 .Add(new CarDashbordPanelSystem())
                 .Init ();    
-        }
+        }        
 
         private void Update () 
         {

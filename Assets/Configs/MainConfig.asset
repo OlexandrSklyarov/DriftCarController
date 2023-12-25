@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   <Camera>k__BackingField: {fileID: 11400000, guid: d0b119a8e7f74ff5599931631d623b9e,
     type: 2}
+  <Window>k__BackingField: {fileID: 11400000, guid: 1251bbbb1b7a2a392bce2c8425b1d250,
+    type: 2}

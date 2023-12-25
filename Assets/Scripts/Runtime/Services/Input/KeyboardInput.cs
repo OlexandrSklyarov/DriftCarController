@@ -6,6 +6,7 @@ namespace SA.Game
     {
         Vector2 IInputService.Movement => _inputAction.Player.Movement.ReadValue<Vector2>();
         bool IInputService.IsBreak => _inputAction.Player.Break.ReadValue<float>() > 0f;
+        bool IInputService.IsOpenMenu => _inputAction.Player.Menu.ReadValue<float>() > 0f;
         
         private Controls _inputAction;
 
@@ -24,6 +25,6 @@ namespace SA.Game
         void IInputService.DisableInput()
         {
             _inputAction.Disable();
-        }        
+        }
     }
 }
