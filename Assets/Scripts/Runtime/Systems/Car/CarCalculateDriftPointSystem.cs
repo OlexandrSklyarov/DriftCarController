@@ -54,7 +54,7 @@ namespace SA.Game
                 }
 
                 TryCalculateDriftPoints(ref drift);
-                DrawResult(ref drift);
+                DrawResult(ref drift, ref engine);
             }
         }
 
@@ -77,14 +77,14 @@ namespace SA.Game
             }
         }
 
-        private void DrawResult(ref CarDriftComponent drift)
+        private void DrawResult(ref CarDriftComponent drift, ref CarEngineComponent engine)
         {
             _hud.DriftPanel.SetDriftResult
             (
                 drift.TotalPoints,
                 drift.Angle,
                 drift.Factor,
-                drift.Factor / 5f,
+                drift.Factor / engine.EngineRef.Config.Drift.MaxDriftPointsFactor,
                 drift.CurrentPoints,
                 drift.DisableDriftTime > _time.Time
             );

@@ -45,6 +45,7 @@ namespace SA.Game
         [field: SerializeField, Min(0.1f)] public float MinDriftAngle {get; private set;} = 60f;
         [field: SerializeField, Min(0.1f)] public float MaxDriftAngle {get; private set;} = 120f;
         [field: SerializeField, Min(0.1f)] public float DisableDriftDelay {get; private set;} = 2f;
+        [field: SerializeField, Min(1f)] public float MaxDriftPointsFactor {get; private set;} = 6f;
     }  
 
     [Serializable]
