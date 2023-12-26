@@ -16,7 +16,8 @@ MonoBehaviour:
   <SpeedLimit>k__BackingField: 120
   <Brake>k__BackingField: 7000
   <Steer>k__BackingField:
-    <MaxSteerAngle>k__BackingField: 20
+    <MaxAngle>k__BackingField: 30
+    <AngleAtMaxSpeed>k__BackingField: 5
     <Sensitivity>k__BackingField: 1
   <Gear>k__BackingField:
     <AccelMultiplierCurve>k__BackingField:
@@ -52,7 +53,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  <WheelConfig>k__BackingField: {fileID: 11400000, guid: 2ec03f50393d93216adeda0fc463bb92,
+  <WheelConfig>k__BackingField: {fileID: 11400000, guid: b65152c01b4f9c79eb8b4a9e4c7ce517,
     type: 2}
   <Drift>k__BackingField:
     <SlipAllowance>k__BackingField: 0.81

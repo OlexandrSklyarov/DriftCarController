@@ -20,8 +20,9 @@ namespace SA.Game
     [Serializable]
     public class Steer
     {
-        [field: SerializeField, Min(1f)] public float MaxSteerAngle {get; private set;} = 60f;             
-        [field: SerializeField, Min(0.1f)] public float Sensitivity {get; private set;} = 1f;             
+        [field: SerializeField, Min(1f)] public float MaxAngle {get; private set;} = 30f;             
+        [field: SerializeField, Min(1f)] public float AngleAtMaxSpeed {get; private set;} = 10f;             
+        [field: SerializeField, Min(0.1f)] public float Sensitivity {get; private set;} = 1f;
     }
 
     [Serializable]

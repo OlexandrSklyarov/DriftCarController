@@ -63,19 +63,22 @@ namespace SA.Game
         {
             var config = engine.EngineRef.Config;
 
+            var forwardSpeed = Vector3.Dot(engine.EngineRef.RB.transform.forward, engine.EngineRef.RB.velocity);
+            engine.SpeedFactor = Mathf.InverseLerp(0, config.SpeedLimit, forwardSpeed); 
+            var currentSteerRange = Mathf.Lerp(config.Steer.MaxAngle, config.Steer.AngleAtMaxSpeed, engine.SpeedFactor);
+                
             foreach(var w in engine.EngineRef.Wheels)
             {
-                if (!w.IsFront) continue;
+                if (!w.IsFront) continue;  
 
-                var steerAngle = input.Horizontal * config.Steer.Sensitivity * config.Steer.MaxSteerAngle;  
-                w.Wheel.steerAngle = Mathf.Clamp(steerAngle, -config.Steer.MaxSteerAngle, config.Steer.MaxSteerAngle); 
+                w.Wheel.steerAngle = input.Horizontal * config.Steer.Sensitivity * currentSteerRange;
             }
         }
 
         private void AddAccel(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
-            var config = engine.EngineRef.Config;             
-                           
+            var config = engine.EngineRef.Config;   
+                                              
             foreach(var w in engine.EngineRef.Wheels)
             {
                 if (!w.IsDriveWheel) continue;  
@@ -85,7 +88,6 @@ namespace SA.Game
                 
                 w.Wheel.motorTorque = (engine.RealSpeed < config.SpeedLimit) ?  
                     motorPower * input.Vertical * _time.FixedDeltaTime : 0f;   
-
             }    
         }        
 
