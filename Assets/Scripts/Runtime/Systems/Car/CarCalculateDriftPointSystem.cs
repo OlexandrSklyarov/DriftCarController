@@ -84,6 +84,7 @@ namespace SA.Game
                 drift.TotalPoints,
                 drift.Angle,
                 drift.Factor,
+                drift.Factor / 5f,
                 drift.CurrentPoints,
                 drift.DisableDriftTime > _time.Time
             );

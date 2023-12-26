@@ -16,9 +16,9 @@ MonoBehaviour:
   <SuspensionDistance>k__BackingField: 0.8
   <ForceAppPointDistance>k__BackingField: 0
   <SP>k__BackingField:
-    <Spring>k__BackingField: 70000
-    <Damper>k__BackingField: 2000
-    <TargetPosition>k__BackingField: 1
+    <Spring>k__BackingField: 35000
+    <Damper>k__BackingField: 4500
+    <TargetPosition>k__BackingField: 0.5
   <Front>k__BackingField:
     <Forward>k__BackingField:
       <ExtremumSlip>k__BackingField: 1

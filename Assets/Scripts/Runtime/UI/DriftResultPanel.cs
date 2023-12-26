@@ -10,6 +10,7 @@ namespace SA.Game
         [SerializeField] private TextMeshProUGUI _currentDriftPoints;
         [SerializeField] private TextMeshProUGUI _currentDriftFactor;
         [SerializeField] private GameObject _currentDriftResult;
+        [SerializeField] private Gradient _pointsValueGradient;
 
         private void Awake() 
         {
@@ -22,12 +23,16 @@ namespace SA.Game
         }
 
         public void SetDriftResult(float totalPoints, float currentAngle, 
-            float driftFactor, float currentDriftPoint, bool isShowDriftResult)
+            float driftFactor, float driftFactorNorm, float currentDriftPoint, bool isShowDriftResult)
         {
             _totalPoints.text = totalPoints.ToString("###,###,000");
             _currentAngle.text = currentAngle.ToString("###,##0") + "°";
             _currentDriftFactor.text = driftFactor.ToString("###,###,##0.0") + "x"; 
             _currentDriftPoints.text = currentDriftPoint.ToString("###,###,000");
+
+            var color = _pointsValueGradient.Evaluate(driftFactorNorm); 
+            _currentDriftFactor.color = color;
+            _currentDriftPoints.color = color;
 
             EnableDriftResultPanel(isShowDriftResult);  
         }
