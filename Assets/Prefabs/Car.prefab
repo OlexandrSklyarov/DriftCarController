@@ -271,14 +271,14 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3432730434110484750}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
   m_Radius: 0.32
   m_SuspensionSpring:
     spring: 90000
     damper: 9000
-    targetPosition: 1
+    targetPosition: 0.5
   m_SuspensionDistance: 0.8
-  m_ForceAppPointDistance: 0.05
+  m_ForceAppPointDistance: 0
   m_Mass: 100
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -342,14 +342,14 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4151405224621224226}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
   m_Radius: 0.32
   m_SuspensionSpring:
     spring: 90000
     damper: 9000
-    targetPosition: 1
+    targetPosition: 0.5
   m_SuspensionDistance: 0.8
-  m_ForceAppPointDistance: 0.05
+  m_ForceAppPointDistance: 0
   m_Mass: 100
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -446,14 +446,14 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161076713516496064}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
   m_Radius: 0.32
   m_SuspensionSpring:
     spring: 90000
     damper: 9000
-    targetPosition: 1
+    targetPosition: 0.5
   m_SuspensionDistance: 0.8
-  m_ForceAppPointDistance: 0.05
+  m_ForceAppPointDistance: 0
   m_Mass: 100
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -655,14 +655,14 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8771398842550887657}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
   m_Radius: 0.32
   m_SuspensionSpring:
     spring: 90000
     damper: 9000
-    targetPosition: 1
+    targetPosition: 0.5
   m_SuspensionDistance: 0.8
-  m_ForceAppPointDistance: 0.05
+  m_ForceAppPointDistance: 0
   m_Mass: 100
   m_WheelDampingRate: 1
   m_ForwardFriction:

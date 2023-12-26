@@ -39,7 +39,7 @@ namespace SA.Game
         {    
             foreach (var w in engine.EngineRef.Wheels)
             {
-                var isSkid = input.IsBrake && !w.IsFront && 
+                var isSkid = input.IsBrake && 
                     engine.RealSpeed > engine.EngineRef.Config.VFX.MaxBreakingThreshold;
 
                 w.SkidVfx.emitting = isSkid;
@@ -57,7 +57,7 @@ namespace SA.Game
             
             var drift = engine.EngineRef.Config.Drift;
             var vfx = engine.EngineRef.Config.VFX;
-            
+
             var wheelHits = new WheelHit[engine.EngineRef.Wheels.Length];
 
             for(int i = 0; i < engine.EngineRef.Wheels.Length; i++)
