@@ -14,6 +14,7 @@ namespace SA.Game
         [field: Space, SerializeField] public Gear Gear {get; private set;}     
         [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}
         [field: Space, SerializeField] public CarDrift Drift {get; private set;}
+        [field: Space, SerializeField] public CarVfx VFX {get; private set;}
         [field: Space, SerializeField] public CarAudio Audio {get; private set;}
     }
 
@@ -45,6 +46,14 @@ namespace SA.Game
         [field: SerializeField, Min(0.1f)] public float MaxDriftAngle {get; private set;} = 120f;
         [field: SerializeField, Min(0.1f)] public float DisableDriftDelay {get; private set;} = 2f;
     }  
+
+    [Serializable]
+    public class CarVfx
+    {
+        [field: SerializeField, Min(0.1f)] public float MaxBreakingThreshold {get; private set;} = 40f;
+        [field: SerializeField, Min(0.1f)] public float StartingSpeedThreshold {get; private set;} = 20f;
+        [field: SerializeField, Min(0.1f)] public float StartingRPMThreshold {get; private set;} = 20f;
+    }
 
     [Serializable]
     public class Gear

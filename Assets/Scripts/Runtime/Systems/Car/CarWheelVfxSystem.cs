@@ -9,6 +9,8 @@ namespace SA.Game
         private EcsPool<PlayerInputComponent> _inputPool;
         private EcsFilter _filter;
 
+        public float StartingRPMThreshold { get; private set; }
+
         public void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
@@ -28,16 +30,17 @@ namespace SA.Game
                 ref var engine = ref _enginePool.Get(ent);
                 ref var input = ref _inputPool.Get(ent);
                 
-                BreakingParticle(ref engine, ref input);
-                DriftParticles(ref engine, ref input);
+                BreakingVfx(ref engine, ref input);
+                GroundCollisionVfx(ref engine, ref input);
             }
         }
 
-        private void BreakingParticle(ref CarEngineComponent engine, ref PlayerInputComponent input)
+        private void BreakingVfx(ref CarEngineComponent engine, ref PlayerInputComponent input)
         {    
             foreach (var w in engine.EngineRef.Wheels)
             {
-                var isSkid = input.IsBrake && !w.IsFront && engine.RealSpeed > engine.EngineRef.Config.Drift.SpeedThreshold;
+                var isSkid = input.IsBrake && !w.IsFront && 
+                    engine.RealSpeed > engine.EngineRef.Config.VFX.MaxBreakingThreshold;
 
                 w.SkidVfx.emitting = isSkid;
 
@@ -48,28 +51,37 @@ namespace SA.Game
             }
         }
 
-        private void DriftParticles(ref CarEngineComponent engine, ref PlayerInputComponent input) 
+        private void GroundCollisionVfx(ref CarEngineComponent engine, ref PlayerInputComponent input) 
         {
             if (input.IsBrake) return;
             
-            var wheelHits = new WheelHit[engine.EngineRef.Wheels.Length];
             var drift = engine.EngineRef.Config.Drift;
+            var vfx = engine.EngineRef.Config.VFX;
+            
+            var wheelHits = new WheelHit[engine.EngineRef.Wheels.Length];
 
             for(int i = 0; i < engine.EngineRef.Wheels.Length; i++)
             {
                 var w = engine.EngineRef.Wheels[i];
                 w.Wheel.GetGroundHit(out wheelHits[i]);
 
+                w.SkidVfx.emitting = false;
+
+                //start car vfx
+                if (w.IsDriveWheel && 
+                    engine.RealSpeed < vfx.StartingSpeedThreshold && 
+                    engine.RPM > StartingRPMThreshold)
+                {
+                    w.SmokeVfx.Emit(1);
+                }
+
+                //drift vfx
                 if (engine.RealSpeed > drift.SpeedThreshold)
                 {    
                     if (Mathf.Abs(wheelHits[i].sidewaysSlip) + Mathf.Abs(wheelHits[i].forwardSlip) > drift.SlipAllowance)
                     {
                         w.SkidVfx.emitting = true; 
                     }
-                }
-                else
-                {
-                    w.SkidVfx.emitting = false;
                 }
             }   
         }
