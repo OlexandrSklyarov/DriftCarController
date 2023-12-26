@@ -55,8 +55,11 @@ MonoBehaviour:
   <WheelConfig>k__BackingField: {fileID: 11400000, guid: 2ec03f50393d93216adeda0fc463bb92,
     type: 2}
   <Drift>k__BackingField:
-    <SlipAllowance>k__BackingField: 0.7
+    <SlipAllowance>k__BackingField: 0.81
     <SpeedThreshold>k__BackingField: 5
+    <MinDriftAngle>k__BackingField: 25
+    <MaxDriftAngle>k__BackingField: 120
+    <DisableDriftDelay>k__BackingField: 1
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
       Guid:

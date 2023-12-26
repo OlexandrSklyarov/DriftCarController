@@ -38,8 +38,11 @@ namespace SA.Game
     [Serializable]
     public class CarDrift
     {
-        [field: SerializeField, Min(0.1f)] public float SlipAllowance {get; private set;} = 1.3f;
+        [field: SerializeField, Min(0.1f)] public float SlipAllowance {get; private set;} = 0.9f;
         [field: SerializeField, Min(0.1f)] public float SpeedThreshold {get; private set;} = 5f;
+        [field: SerializeField, Min(0.1f)] public float MinDriftAngle {get; private set;} = 60f;
+        [field: SerializeField, Min(0.1f)] public float MaxDriftAngle {get; private set;} = 120f;
+        [field: SerializeField, Min(0.1f)] public float DisableDriftDelay {get; private set;} = 2f;
     }  
 
     [Serializable]

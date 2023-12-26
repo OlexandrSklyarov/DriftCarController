@@ -25,8 +25,6 @@ namespace SA.Game
             {
                 ref var engine = ref _enginePool.Get(ent);
 
-                var config = engine.EngineRef.Config;
-
                 _hud.CarDashbord.SpeedDisplay.SetValue(engine.RealSpeed);
                 _hud.CarDashbord.RPMDisplay.SetValue(engine.RPM);
                 _hud.CarDashbord.SetGearValue(1);
