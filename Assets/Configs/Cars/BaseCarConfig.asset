@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BaseCarConfig
   m_EditorClassIdentifier: 
   <MotorPower>k__BackingField: 100000
-  <SpeedLimit>k__BackingField: 120
+  <SpeedLimit>k__BackingField: 200
   <Brake>k__BackingField: 7000
+  <MoveDownForce>k__BackingField: 200
   <Steer>k__BackingField:
-    <MaxAngle>k__BackingField: 30
+    <MaxAngle>k__BackingField: 25
     <AngleAtMaxSpeed>k__BackingField: 5
     <Sensitivity>k__BackingField: 1
   <Gear>k__BackingField:
@@ -61,6 +62,11 @@ MonoBehaviour:
     <MinDriftAngle>k__BackingField: 25
     <MaxDriftAngle>k__BackingField: 120
     <DisableDriftDelay>k__BackingField: 1
+    <MaxDriftPointsFactor>k__BackingField: 6
+  <VFX>k__BackingField:
+    <MaxBreakingThreshold>k__BackingField: 40
+    <StartingSpeedThreshold>k__BackingField: 20
+    <StartingRPMThreshold>k__BackingField: 20
   <Audio>k__BackingField:
     <EngineMoveSfx>k__BackingField:
       Guid:

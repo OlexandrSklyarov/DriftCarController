@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
   <FollowSpeed>k__BackingField: 10
-  <LookSpeed>k__BackingField: 120
+  <LookSpeed>k__BackingField: 200
   <Offset>k__BackingField: {x: 0, y: 3.63, z: -12.6}

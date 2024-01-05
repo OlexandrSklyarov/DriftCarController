@@ -10,6 +10,7 @@ namespace SA.Game
         [field: SerializeField, Min(1f)] public float MotorPower {get; private set;} = 100f; 
         [field: SerializeField, Min(1f)] public float SpeedLimit {get; private set;} = 60f; 
         [field: SerializeField, Min(1f)] public float Brake {get; private set;} = 50000f; 
+        [field: SerializeField, Min(1f)] public float MoveDownForce {get; private set;} = 50f;
         [field: Space, SerializeField] public Steer Steer {get; private set;}     
         [field: Space, SerializeField] public Gear Gear {get; private set;}     
         [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}

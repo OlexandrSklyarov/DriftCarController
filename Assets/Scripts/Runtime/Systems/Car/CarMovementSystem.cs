@@ -32,15 +32,22 @@ namespace SA.Game
                 ref var input = ref _inputPool.Get(ent);
                 ref var engine = ref _enginePool.Get(ent); 
                
+                AddMoveDownForce(ref engine);              
                 AddAccel(ref input, ref engine);              
                 AddSteer(ref input, ref engine);              
                 AddBrake(ref input, ref engine); 
 
                 TryApplyWheelPrm(ref engine);
             }
-        } 
-    
-        
+        }
+
+        private void AddMoveDownForce(ref CarEngineComponent engine)
+        {
+            var config = engine.EngineRef.Config;
+            var rb = engine.EngineRef.RB;
+            rb.AddForce(-rb.transform.up * rb.velocity.magnitude * config.MoveDownForce);
+        }
+
         private void AddBrake(ref PlayerInputComponent input, ref CarEngineComponent engine)
         {
             var config = engine.EngineRef.Config;           
