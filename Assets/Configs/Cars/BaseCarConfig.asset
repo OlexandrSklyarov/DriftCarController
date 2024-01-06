@@ -12,48 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d99298ac832a387ea32f2c4e3247f29, type: 3}
   m_Name: BaseCarConfig
   m_EditorClassIdentifier: 
-  <MotorPower>k__BackingField: 100000
+  <EnginePower>k__BackingField:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 2.4243164
+      value: 97.05466
+      inSlope: -0.064095
+      outSlope: -0.064095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07015142
+    - serializedVersion: 3
+      time: 8329.972
+      value: 2839.2996
+      inSlope: -0.31631058
+      outSlope: -0.31631058
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.041921873
+      outWeight: 0.27498513
+    - serializedVersion: 3
+      time: 10000
+      value: 0
+      inSlope: -0.6752187
+      outSlope: -0.6752187
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12869027
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   <SpeedLimit>k__BackingField: 200
   <Brake>k__BackingField: 7000
   <MoveDownForce>k__BackingField: 200
+  <PowerSmoothTime>k__BackingField: 0.01
   <Steer>k__BackingField:
     <MaxAngle>k__BackingField: 25
     <AngleAtMaxSpeed>k__BackingField: 5
     <Sensitivity>k__BackingField: 1
   <Gear>k__BackingField:
-    <AccelMultiplierCurve>k__BackingField:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.001033783
-        value: 2.994751
-        inSlope: 1.5868099
-        outSlope: 1.5868099
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.22937638
-      - serializedVersion: 3
-        time: 0.19754322
-        value: 2.4501607
-        inSlope: -5.2570477
-        outSlope: -5.2570477
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05411378
-        outWeight: 0.046558823
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0.35435158
-        outSlope: 0.35435158
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.102290094
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    <Values>k__BackingField:
+    - 3
+    - 2.5
+    - 2
+    - 1.5
+    - 0.7
   <WheelConfig>k__BackingField: {fileID: 11400000, guid: b65152c01b4f9c79eb8b4a9e4c7ce517,
     type: 2}
   <Drift>k__BackingField:

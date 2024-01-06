@@ -4,8 +4,11 @@ namespace SA.Game
     public struct CarEngineComponent
     {
         public ICarEngine EngineRef;
+        public float TotalPower;
         public float RealSpeed;
         public float RPM;
-        internal float SpeedFactor;
+        public float EngineRPM;
+        public float SpeedFactor;
+        public int GearIndex;
     }
 }

@@ -7,10 +7,11 @@ namespace SA.Game
     [CreateAssetMenu(fileName = "CarConfig", menuName = "SO/Car/CarConfig")]
     public sealed class CarConfig : ScriptableObject
     { 
-        [field: SerializeField, Min(1f)] public float MotorPower {get; private set;} = 100f; 
+        [field: SerializeField] public AnimationCurve EnginePower {get; private set;}
         [field: SerializeField, Min(1f)] public float SpeedLimit {get; private set;} = 60f; 
         [field: SerializeField, Min(1f)] public float Brake {get; private set;} = 50000f; 
         [field: SerializeField, Min(1f)] public float MoveDownForce {get; private set;} = 50f;
+        [field: SerializeField, Min(0.01f)] public float PowerSmoothTime {get; private set;} = 0.1f;
         [field: Space, SerializeField] public Steer Steer {get; private set;}     
         [field: Space, SerializeField] public Gear Gear {get; private set;}     
         [field: Space, SerializeField] public WheelConfig WheelConfig {get; private set;}
@@ -59,7 +60,10 @@ namespace SA.Game
 
     [Serializable]
     public class Gear
-    {
-        [field: SerializeField] public AnimationCurve AccelMultiplierCurve {get; private set;} = AnimationCurve.Linear(0f, 3f, 1f, 1f);
+    {        
+        [field: SerializeField] public float[] Values {get; private set;} = new float[]
+        {
+            2f, 1.7f, 1.3f, 0.9f, 0.4f
+        };
     }    
 }

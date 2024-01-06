@@ -7,6 +7,7 @@ namespace SA.Game
     {
         public Rigidbody RB {get;}
         public CarConfig Config {get;}
-        public WheelData[] Wheels {get;}      
+        public WheelData[] Wheels {get;}   
+        public int WheelDriveCount {get;}   
     }
 }

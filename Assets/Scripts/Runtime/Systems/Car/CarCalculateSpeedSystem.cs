@@ -1,4 +1,3 @@
-using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -36,14 +35,11 @@ namespace SA.Game
 
             foreach (var w in engine.EngineRef.Wheels)
             {
-                if (!w.IsDriveWheel) continue;
                 rpm += w.Wheel.rpm;
                 count++;
             }
-
-            if (count <= 0) return;
             
-            engine.RPM = rpm / count;
+            engine.RPM = (count > 0) ? rpm / count : 0f;
         }
 
         private void CalcSpeed(ref CarEngineComponent engine)

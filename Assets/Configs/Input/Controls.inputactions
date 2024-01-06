@@ -24,6 +24,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "IncGear",
+                    "type": "Button",
+                    "id": "6a515458-a440-4980-810a-91e2e723c865",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DecGear",
+                    "type": "Button",
+                    "id": "c5e472d8-22e3-470a-874a-63d5914b2def",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Menu",
                     "type": "Button",
                     "id": "40b76a4b-fd1f-4ebe-9c95-65357115b45a",
@@ -108,6 +126,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48efbd2f-f51f-43ed-baa1-c544533d65c0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncGear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a53d7ad-efa1-43d2-bf33-ee448f44a963",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DecGear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

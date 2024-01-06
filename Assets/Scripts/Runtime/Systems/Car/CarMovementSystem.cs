@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -33,13 +34,14 @@ namespace SA.Game
                 ref var engine = ref _enginePool.Get(ent); 
                
                 AddMoveDownForce(ref engine);              
-                AddAccel(ref input, ref engine);              
+                CalculateTotalPower(ref input, ref engine);              
+                AddAccel(ref engine);              
                 AddSteer(ref input, ref engine);              
                 AddBrake(ref input, ref engine); 
 
                 TryApplyWheelPrm(ref engine);
             }
-        }
+        }        
 
         private void AddMoveDownForce(ref CarEngineComponent engine)
         {
@@ -82,21 +84,33 @@ namespace SA.Game
             }
         }
 
-        private void AddAccel(ref PlayerInputComponent input, ref CarEngineComponent engine)
-        {
-            var config = engine.EngineRef.Config;   
-                                              
+        private void AddAccel(ref CarEngineComponent engine)
+        {            
             foreach(var w in engine.EngineRef.Wheels)
             {
                 if (!w.IsDriveWheel) continue;  
-
-                var normSpeed = engine.RealSpeed / config.SpeedLimit;
-                var motorPower = config.MotorPower * config.Gear.AccelMultiplierCurve.Evaluate(normSpeed);
                 
-                w.Wheel.motorTorque = (engine.RealSpeed < config.SpeedLimit) ?  
-                    motorPower * input.Vertical * _time.FixedDeltaTime : 0f;   
+                w.Wheel.motorTorque = engine.TotalPower / engine.EngineRef.WheelDriveCount;   
             }    
-        }        
+        }      
+
+        private void CalculateTotalPower(ref PlayerInputComponent input, ref CarEngineComponent engine)
+        {
+            var config = engine.EngineRef.Config;
+            var curGear = config.Gear.Values[engine.GearIndex];
+
+            engine.TotalPower = config.EnginePower.Evaluate(engine.EngineRPM) * curGear * input.Vertical;
+
+            var velocity = 0f;
+
+            engine.EngineRPM = Mathf.SmoothDamp
+            (
+                engine.EngineRPM, 
+                1000f + Mathf.Abs(engine.RPM) * 3.6f * curGear,
+                ref velocity,
+                config.PowerSmoothTime
+            );
+        }  
 
         [System.Diagnostics.Conditional("UNITY_EDITOR")]
         private void TryApplyWheelPrm(ref CarEngineComponent engine)

@@ -46,6 +46,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""IncGear"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a515458-a440-4980-810a-91e2e723c865"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecGear"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5e472d8-22e3-470a-874a-63d5914b2def"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""40b76a4b-fd1f-4ebe-9c95-65357115b45a"",
@@ -132,6 +150,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48efbd2f-f51f-43ed-baa1-c544533d65c0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IncGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a53d7ad-efa1-43d2-bf33-ee448f44a963"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecGear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -212,6 +252,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Break = m_Player.FindAction("Break", throwIfNotFound: true);
+        m_Player_IncGear = m_Player.FindAction("IncGear", throwIfNotFound: true);
+        m_Player_DecGear = m_Player.FindAction("DecGear", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
@@ -280,6 +322,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Break;
+    private readonly InputAction m_Player_IncGear;
+    private readonly InputAction m_Player_DecGear;
     private readonly InputAction m_Player_Menu;
     public struct PlayerActions
     {
@@ -287,6 +331,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Break => m_Wrapper.m_Player_Break;
+        public InputAction @IncGear => m_Wrapper.m_Player_IncGear;
+        public InputAction @DecGear => m_Wrapper.m_Player_DecGear;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -303,6 +349,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Break.started += instance.OnBreak;
             @Break.performed += instance.OnBreak;
             @Break.canceled += instance.OnBreak;
+            @IncGear.started += instance.OnIncGear;
+            @IncGear.performed += instance.OnIncGear;
+            @IncGear.canceled += instance.OnIncGear;
+            @DecGear.started += instance.OnDecGear;
+            @DecGear.performed += instance.OnDecGear;
+            @DecGear.canceled += instance.OnDecGear;
             @Menu.started += instance.OnMenu;
             @Menu.performed += instance.OnMenu;
             @Menu.canceled += instance.OnMenu;
@@ -316,6 +368,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Break.started -= instance.OnBreak;
             @Break.performed -= instance.OnBreak;
             @Break.canceled -= instance.OnBreak;
+            @IncGear.started -= instance.OnIncGear;
+            @IncGear.performed -= instance.OnIncGear;
+            @IncGear.canceled -= instance.OnIncGear;
+            @DecGear.started -= instance.OnDecGear;
+            @DecGear.performed -= instance.OnDecGear;
+            @DecGear.canceled -= instance.OnDecGear;
             @Menu.started -= instance.OnMenu;
             @Menu.performed -= instance.OnMenu;
             @Menu.canceled -= instance.OnMenu;
@@ -403,6 +461,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnBreak(InputAction.CallbackContext context);
+        void OnIncGear(InputAction.CallbackContext context);
+        void OnDecGear(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
     }
     public interface IDebugActions

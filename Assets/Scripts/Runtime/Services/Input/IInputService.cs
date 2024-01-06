@@ -7,6 +7,8 @@ namespace SA.Game
         Vector2 Movement {get;}
         bool IsBreak {get;}
         bool IsOpenMenu {get;}
+        bool IsIncreaseGear {get;}
+        bool IsDecreaseGear {get;}
 
         void ActiveInput();
         void DisableInput();
