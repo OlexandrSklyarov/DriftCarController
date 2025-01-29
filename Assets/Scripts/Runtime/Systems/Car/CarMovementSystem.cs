@@ -47,7 +47,7 @@ namespace SA.Game
         {
             var config = engine.EngineRef.Config;
             var rb = engine.EngineRef.RB;
-            rb.AddForce(-rb.transform.up * rb.velocity.magnitude * config.MoveDownForce);
+            rb.AddForce(-rb.transform.up * rb.linearVelocity.magnitude * config.MoveDownForce);
         }
 
         private void AddBrake(ref PlayerInputComponent input, ref CarEngineComponent engine)
@@ -72,7 +72,7 @@ namespace SA.Game
         {
             var config = engine.EngineRef.Config;
 
-            var forwardSpeed = Vector3.Dot(engine.EngineRef.RB.transform.forward, engine.EngineRef.RB.velocity);
+            var forwardSpeed = Vector3.Dot(engine.EngineRef.RB.transform.forward, engine.EngineRef.RB.linearVelocity);
             engine.SpeedFactor = Mathf.InverseLerp(0, config.SpeedLimit, forwardSpeed); 
             var currentSteerRange = Mathf.Lerp(config.Steer.MaxAngle, config.Steer.AngleAtMaxSpeed, engine.SpeedFactor);
                 

@@ -20,7 +20,7 @@ namespace SA.Game
         [Inject] private AudioService _audioService;
         [Inject] private IInputService _inputService;   
 
-        private async UniTaskVoid Start()
+        private async void Start()
         {     
             _sharedData = new SharedData()
             {

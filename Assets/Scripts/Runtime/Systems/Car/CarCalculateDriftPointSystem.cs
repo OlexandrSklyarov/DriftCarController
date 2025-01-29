@@ -101,7 +101,7 @@ namespace SA.Game
         private void CalcDriftAngle(ref CarEngineComponent engine, ref CarDriftComponent drift)
         {
             var forward = engine.EngineRef.RB.transform.forward;
-            var vel = new Vector3(engine.EngineRef.RB.velocity.x, 0f, engine.EngineRef.RB.velocity.z).normalized;
+            var vel = new Vector3(engine.EngineRef.RB.linearVelocity.x, 0f, engine.EngineRef.RB.linearVelocity.z).normalized;
             drift.Angle = Vector3.Angle(forward, vel);
         }
 
